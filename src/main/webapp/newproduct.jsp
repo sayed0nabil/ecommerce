@@ -40,6 +40,59 @@
         }
     }
 
+    function validateName() {
+        var productName = $("#name").val();
+        if (productName.trim().length == 0) {
+            $("#name").removeClass("is-valid");
+            $("#name").addClass("is-invalid");
+        } else {
+            $("#name").removeClass("is-invalid");
+            $("#name").addClass("is-valid");
+        }
+    }
+
+    function validatePrice() {
+        var productPrice = $("#price").val();
+        if (productPrice <= 0) {
+            $("#price").removeClass("is-valid");
+            $("#price").addClass("is-invalid");
+        } else {
+            $("#price").removeClass("is-invalid");
+            $("#price").addClass("is-valid");
+        }
+    }
+
+    function validateQuantity() {
+        var productQuantity = $("#quantity").val();
+        if (productQuantity <= 0) {
+            $("#quantity").removeClass("is-valid");
+            $("#quantity").addClass("is-invalid");
+        } else {
+            $("#quantity").removeClass("is-invalid");
+            $("#quantity").addClass("is-valid");
+        }
+    }
+
+    $().ready(function () {
+        $('[type="file"]').change(function () {
+            var fileInput = $(this);
+            if (fileInput.length && fileInput[0].files && fileInput[0].files.length) {
+                var url = window.URL || window.webkitURL;
+                var image = new Image();
+                image.onload = function () {
+                    $("#imgInp").removeClass("is-invalid");
+                    $("#imgInp").addClass("is-valid");
+                };
+                image.onerror = function () {
+
+                    $("#imgInp").removeClass("is-valid");
+                    $("#imgInp").addClass("is-invalid");
+                };
+                image.src = url.createObjectURL(fileInput[0].files[0]);
+            }
+        });
+    });
+
 </script>
 <style>
     .bg-login-image {
@@ -80,22 +133,25 @@
                                 <form class="user" method="post">
                                     <div class="form-group">
                                         <input class="form-control "
-                                               id="name" name="name" placeholder="product name" type="text" required>
+                                               id="name" name="name" placeholder="product name" type="text" required
+                                               onchange="validateName()">
                                     </div>
                                     <div class="form-group">
                                         <input class="form-control "
-                                               id="price" name="price" placeholder="price" type="number" required>
+                                               id="price" name="price" placeholder="price" type="number" required
+                                               onchange="validatePrice()">
                                     </div>
                                     <div class="form-group">
                                         <input class="form-control "
                                                id="quantity" name="quantity" placeholder="quantity" type="number"
-                                               required>
+                                               required onchange="validateQuantity()">
                                     </div>
 
                                     <div class="form-group">
-                                        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref"
-                                                name="category" required>
-                                            <option value="" disabled selected hidden>Category</option>
+                                        <select class="custom-select my-1 mr-sm-2 is-valid" id="inlineFormCustomSelectPref"
+                                                name="category" required >
+                                            <!--<option value="" disabled selected hidden>others</option>-->
+                                            <option value="others">others</option>
                                             <c:forEach items="${requestScope.categories}" var="iterator">
                                                 <option value="${iterator.id}">${iterator.name}</option>
 
