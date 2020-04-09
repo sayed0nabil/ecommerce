@@ -34,14 +34,56 @@
         }
     }
 
+    function checkPassword(str) {
+        var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+        return re.test(str);
+    }
+
+    function validateData() {
+        $(".error").hide();
+        let hasError = false;
+        let emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+        let emailblockReg =
+            /^([\w-\.]+@(?!yahoo.com)(?!hotmail.com)([\w-]+\.)+[\w-]{2,4})?$/;
+
+        let emailaddressVal = $("#email").val();
+        let passwordVal = $("#password").val();
+
+        if (emailaddressVal == '') {
+            $("#email").after('<p style="color:red;font-weight:bold;font-size:12px;" class="error">Please enter your email address.</p>');
+            hasError = true;
+        } else if (!emailReg.test(emailaddressVal)) {
+            $("#email").after('<p style="color:red;font-weight:bold;font-size:12px;" class="error">Enter a valid email address.</p>');
+            hasError = true;
+        } else if (passwordVal == '') {
+            $("#password").after('<p style="color:red;font-weight:bold;font-size:12px;" class="error">Please enter your password.</p>');
+            hasError = true;
+        } else if (!emailblockReg.test(emailaddressVal)) {
+            $("#email").after('<p style="color:red;font-weight:bold;font-size:12px;" class="error">No yahoo , hotmail emails.</p>');
+            hasError = true
+
+        } else if (!checkPassword(passwordVal)) {
+            $("#password").after('<p style="color:red;font-weight:bold;font-size:12px;" class="error">No Numbers , No UperCase chars or too short</p>');
+            hasError = true
+        }
+
+        if (hasError == true) {
+            return false;
+        }
+    }
+
     $(document).ready(function () {
+
         $("#submitBtn").click(function () {
-            let email = $("#email").val();
-            let password = $("#password").val();
-            //let jsonData = {"email": email, "password": password}
-            $.post("LoginServlet",
-                {"email": email, "password": password}
-                , ajaxCallBack);
+            if (validateData()) {
+                let email = $("#email").val();
+                let password = $("#password").val();
+                //let jsonData = {"email": email, "password": password}
+                $.post("LoginServlet",
+                    {"email": email, "password": password}
+                    , ajaxCallBack);
+            }
+
         });
     });
 </script>
@@ -68,11 +110,11 @@
                                 <form class="user">
                                     <div class="form-group">
                                         <input aria-describedby="emailHelp" class="form-control form-control-user"
-                                               id="email" placeholder="Enter Email Address..." type="email">
+                                               id="email" placeholder="Enter Email Address..." required type="email">
                                     </div>
                                     <div class="form-group">
                                         <input class="form-control form-control-user" id="password"
-                                               placeholder="Password" type="password">
+                                               placeholder="Password" required type="password">
                                     </div>
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox small">
