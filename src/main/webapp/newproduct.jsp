@@ -16,84 +16,17 @@
     <meta content="" name="description">
     <meta content="" name="author">
     <script src="views/js/libs/jquery-3.4.1.min.js"></script>
+    <script src="views/js/newProduct.js"></script>
     <title>add new product </title>
 
-    <!-- Custom fonts for this template-->
-    <link href="views/css/all.min.css" rel="stylesheet" type="text/css">
-    <!--    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">-->
 
-    <!-- Custom styles for this template-->
+    <link href="views/css/all.min.css" rel="stylesheet" type="text/css">
+
     <link href="views/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
-<script>
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#productImage').remove();
-                $('#productImgDiv').prepend($('<img>', {id: 'productImage', src: '#'}));
-                $('#imageLabel').text(input.files[0].name);
-                $('#productImage').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]); // convert to base64 string
-        }
-    }
 
-    function validateName() {
-        var productName = $("#name").val();
-        if (productName.trim().length == 0) {
-            $("#name").removeClass("is-valid");
-            $("#name").addClass("is-invalid");
-        } else {
-            $("#name").removeClass("is-invalid");
-            $("#name").addClass("is-valid");
-        }
-    }
 
-    function validatePrice() {
-        var productPrice = $("#price").val();
-        if (productPrice <= 0) {
-            $("#price").removeClass("is-valid");
-            $("#price").addClass("is-invalid");
-        } else {
-            $("#price").removeClass("is-invalid");
-            $("#price").addClass("is-valid");
-        }
-    }
-
-    function validateQuantity() {
-        var productQuantity = $("#quantity").val();
-        if (productQuantity <= 0) {
-            $("#quantity").removeClass("is-valid");
-            $("#quantity").addClass("is-invalid");
-        } else {
-            $("#quantity").removeClass("is-invalid");
-            $("#quantity").addClass("is-valid");
-        }
-    }
-
-    $().ready(function () {
-        $('[type="file"]').change(function () {
-            var fileInput = $(this);
-            if (fileInput.length && fileInput[0].files && fileInput[0].files.length) {
-                var url = window.URL || window.webkitURL;
-                var image = new Image();
-                image.onload = function () {
-                    $("#imgInp").removeClass("is-invalid");
-                    $("#imgInp").addClass("is-valid");
-                };
-                image.onerror = function () {
-
-                    $("#imgInp").removeClass("is-valid");
-                    $("#imgInp").addClass("is-invalid");
-                };
-                image.src = url.createObjectURL(fileInput[0].files[0]);
-            }
-        });
-    });
-
-</script>
 <style>
     .bg-login-image {
         background-image: none;
@@ -102,8 +35,7 @@
     #productImage {
         width: 100%;
         height: 90%;
-        margin-top: 5px;
-        margin-bottom: 5px;
+        margin:2em;
     }
 
 </style>
@@ -131,7 +63,10 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Add new Product</h1>
                                     </div>
-                                    <form class="user" method="post" action="newProduct">
+                                    <div id="error" class="alert alert-danger d-none" role="alert">
+                                       please fill all fields!
+                                    </div>
+                                    <form class="user" method="post" action="newProduct" onsubmit="return validateForm()" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <input class="form-control "
                                                    id="name" name="name" placeholder="product name" type="text" required
@@ -164,7 +99,7 @@
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input form-control " id="imgInp"
                                                    accept="image/*"
-                                                   onchange="readURL(this)">
+                                                   onchange="readURL(this)" name="productImage">
                                             <label class="custom-file-label" id="imageLabel" for="imgInp">Choose
                                                 Image</label>
                                         </div>
