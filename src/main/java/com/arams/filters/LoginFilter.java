@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.regex.Pattern;
 
 public class LoginFilter implements Filter {
 
@@ -24,26 +25,24 @@ public class LoginFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
 
+            Cookie ck[] = req.getCookies();
+            if (ck == null) {
+                if (req.getParameter("flag") == null) {
+                    Cookie cn = new Cookie("username", "alaa");
+                    res.addCookie(cn);
+                    res.sendRedirect(req.getRequestURI() + "?flag=true");
+                } else {
+                    PrintWriter out = response.getWriter();
+                    out.println("<label>");
+                    out.println("Please open your cookie!!");
+                    out.println("</label>");
+                    out.flush();
+                    out.close();
+                }
 
-        Cookie ck[] = req.getCookies();
-        if (ck == null) {
-            if (req.getParameter("flag") == null) {
-                Cookie cn = new Cookie("username", "alaa");
-                res.addCookie(cn);
-                res.sendRedirect(req.getRequestURI() + "?flag=true");
             } else {
-                PrintWriter out = response.getWriter();
-                out.println("<label>");
-                out.println("Please open your cookie!!");
-                out.println("</label>");
-                out.flush();
-                out.close();
+                chain.doFilter(request, response);
             }
-
-        } else {
-            chain.doFilter(request, response);
-        }
-
     }
 
     @Override
