@@ -2,6 +2,8 @@ package com.arams.beans;
 // Generated Apr 8, 2020, 8:15:09 AM by Hibernate Tools 4.3.1
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
@@ -23,8 +25,13 @@ public class UserProductCart  implements java.io.Serializable {
 
 
      private UserProductCartId id;
+
+     @JsonBackReference
      private Product product;
+
+     @JsonBackReference
      private User user;
+
      private int quantity;
 
     public UserProductCart() {

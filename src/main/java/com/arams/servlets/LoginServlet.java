@@ -1,7 +1,7 @@
 package com.arams.servlets;
 
 import com.arams.beans.User;
-import com.google.gson.Gson;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -33,7 +33,6 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-        Gson gson = new Gson();
         PrintWriter out = res.getWriter();
         String email = req.getParameter("email");
         String password = req.getParameter("password");
@@ -48,7 +47,7 @@ public class LoginServlet extends HttpServlet {
 
         if (user != null) {
             System.out.println(user.getFirstName() + " " + user.getLastName());
-            String loginResult = gson.toJson(user);
+            String loginResult = new ObjectMapper().writeValueAsString(user);
             System.out.println(loginResult);
             out.println(loginResult);
         } else {

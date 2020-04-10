@@ -2,6 +2,8 @@ package com.arams.beans;
 // Generated Apr 8, 2020, 8:15:09 AM by Hibernate Tools 4.3.1
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -36,7 +38,9 @@ public class User  implements java.io.Serializable {
      private String password;
      private Date birthDate;
      private byte admin;
-//     private Set<UserProductCart> userProductCarts = new HashSet<UserProductCart>(0);
+
+     @JsonManagedReference
+     private Set<UserProductCart> userProductCarts = new HashSet<UserProductCart>(0);
 
     public User() {
     }
@@ -143,14 +147,14 @@ public class User  implements java.io.Serializable {
         this.admin = admin;
     }
 
-//@OneToMany(fetch=FetchType.LAZY, mappedBy="user")
-//    public Set<UserProductCart> getUserProductCarts() {
-//        return this.userProductCarts;
-//    }
-//
-//    public void setUserProductCarts(Set<UserProductCart> userProductCarts) {
-//        this.userProductCarts = userProductCarts;
-//    }
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="user")
+    public Set<UserProductCart> getUserProductCarts() {
+        return this.userProductCarts;
+    }
+
+    public void setUserProductCarts(Set<UserProductCart> userProductCarts) {
+        this.userProductCarts = userProductCarts;
+    }
 
 
 

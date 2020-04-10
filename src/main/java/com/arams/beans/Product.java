@@ -2,6 +2,9 @@ package com.arams.beans;
 // Generated Apr 8, 2020, 8:15:09 AM by Hibernate Tools 4.3.1
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -26,11 +29,18 @@ public class Product  implements java.io.Serializable {
 
 
      private Integer id;
+
+     @JsonBackReference
      private Category category;
+
      private String name;
      private int price;
      private int quantity;
+
+     @JsonManagedReference
      private Set<UserProductCart> userProductCarts = new HashSet<UserProductCart>(0);
+
+     @JsonManagedReference
      private Set<ProductImage> productImages = new HashSet<ProductImage>(0);
 
     public Product() {
