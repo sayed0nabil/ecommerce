@@ -2,6 +2,8 @@ package com.arams.beans;
 // Generated Apr 8, 2020, 8:15:09 AM by Hibernate Tools 4.3.1
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -23,6 +25,8 @@ public class Category  implements java.io.Serializable {
 
      private int id;
      private String name;
+
+     @JsonManagedReference
      private Set<Product> products = new HashSet<Product>(0);
 
     public Category() {

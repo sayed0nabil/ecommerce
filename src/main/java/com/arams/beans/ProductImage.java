@@ -2,6 +2,8 @@ package com.arams.beans;
 // Generated Apr 8, 2020, 8:15:09 AM by Hibernate Tools 4.3.1
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
@@ -23,7 +25,10 @@ public class ProductImage  implements java.io.Serializable {
 
 
      private ProductImageId id;
+
+     @JsonBackReference
      private Product product;
+
      private int quantity;
 
     public ProductImage() {

@@ -1,9 +1,12 @@
 package com.arams.servlets;
 
 
+import com.arams.beans.Category;
+import com.arams.beans.Product;
 import com.arams.beans.User;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.arams.db.connection.HibernateConnector;
+import com.arams.db.dao.classes.ProductDao;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -23,12 +26,6 @@ public class Test extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        PrintWriter out = res.getWriter();
-        SessionFactory sessionFactory = new Configuration().configure("/config/hibernate.cfg.xml").buildSessionFactory();
-        Session session = sessionFactory.openSession();
-        Criteria criteria = session.createCriteria(User.class, "user");
-        List<User> list = criteria.list();
-        Gson gson = new Gson();
-        out.println(gson.toJson(list, new TypeToken<List<User>>() {}.getType()));
+        
     }
 }

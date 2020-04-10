@@ -1,0 +1,129 @@
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Moamen">
+    <title>Create an account</title>
+    <!-- Custom fonts-->
+    <link href="views/css/libs/custom/all.css" rel="stylesheet" type="text/css">
+    <!-- Custom styles for this template-->
+    <link href="views/css/libs/custom/sb-admin-2.css" rel="stylesheet" type="text/css">
+
+</head>
+<body class="bg-gradient-primary">
+<form class="user" onsubmit="return onSubmit();">
+
+
+    <div id="modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Image upload error</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Please choose an image with a valid format.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card  o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <!--                <div class="my-5  col-lg-4 d-lg-block bg-register-image"></div>-->
+                    <div class="col-sm-4 text-center">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-3">Upload your image</h1>
+                            </div>
+                            <!--style="border-radius: 100px;width:11rem;height:12rem;object-fit: fill;"-->
+                            <img id="UserImage" onerror="imageLoadingErrorMessage(event)"
+                                 style="width:11rem;height:12rem;"
+                                 class="rounded-circle"
+                                 src="views/images/user.png"/>
+                            <a onclick="$('#HTMLFileChooser').trigger('click')"
+                               class="text-light mt-3 btn btn-primary ">
+                                Upload
+                            </a>
+                            <input accept="image/*" onchange="fileInputOnChange()"
+                                   id="HTMLFileChooser" value="Upload" type="file" class="d-none"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-8 text-center">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <input required="required" title="Please dont enter any numbers" pattern="[a-zA-Z]*"
+                                           type="text" class="form-control form-control-user" id="FirstName"
+                                           placeholder="First Name">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input required="required" title="Please dont enter any numbers" pattern="[a-zA-Z]*"
+                                           type="text" class="form-control form-control-user" id="LastName"
+                                           placeholder="Last Name">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+
+                                <div class="col-sm-8">
+                                    <input required="required" type="email" class="form-control form-control-user"
+                                           id="Email"
+                                           placeholder="Email Address">
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <input required="required" type="text" onblur="(this.type='text')"
+                                           onfocus="(this.type='date')" class="form-control form-control-user" id="Date"
+                                           placeholder="Birth date">
+                                </div>
+
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <input pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$" title="Password must be at least 8 characters,
+                                    no more than 16 characters, and must include at least one upper case letter, one lower case letter, and
+                                    one numeric digit" required="required" type="password"
+                                           class="form-control form-control-user"
+                                           id="InputPassword" placeholder="Password">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input required="required" type="password" class="form-control form-control-user"
+                                           id="RepeatPassword" placeholder="Repeat Password">
+                                </div>
+                            </div>
+                            <input value="Register Account" type="submit" href="login.html"
+                                   class="btn btn-primary btn-user btn-block"/>
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" href="login.html">Already have an account? Login!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script src="views/js/register.js"></script>
+<script src="views/js/libs/jquery-3.4.1.min.js"></script>
+<script src="views/js/libs/bootstrap.min.js"></script>
+<script src="views/js/libs/custom/jquery.easing.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="views/js/libs/custom/sb-admin-2.js"></script>
+</body>
+</html>

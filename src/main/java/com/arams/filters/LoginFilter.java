@@ -24,7 +24,7 @@ public class LoginFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
 
-        PrintWriter out = response.getWriter();
+
         Cookie ck[] = req.getCookies();
         if (ck == null) {
             if (req.getParameter("flag") == null) {
@@ -32,9 +32,12 @@ public class LoginFilter implements Filter {
                 res.addCookie(cn);
                 res.sendRedirect(req.getRequestURI() + "?flag=true");
             } else {
+                PrintWriter out = response.getWriter();
                 out.println("<label>");
                 out.println("Please open your cookie!!");
                 out.println("</label>");
+                out.flush();
+                out.close();
             }
 
         } else {
