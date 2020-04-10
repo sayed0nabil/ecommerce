@@ -40,6 +40,59 @@
         }
     }
 
+    function validateName() {
+        var productName = $("#name").val();
+        if (productName.trim().length == 0) {
+            $("#name").removeClass("is-valid");
+            $("#name").addClass("is-invalid");
+        } else {
+            $("#name").removeClass("is-invalid");
+            $("#name").addClass("is-valid");
+        }
+    }
+
+    function validatePrice() {
+        var productPrice = $("#price").val();
+        if (productPrice <= 0) {
+            $("#price").removeClass("is-valid");
+            $("#price").addClass("is-invalid");
+        } else {
+            $("#price").removeClass("is-invalid");
+            $("#price").addClass("is-valid");
+        }
+    }
+
+    function validateQuantity() {
+        var productQuantity = $("#quantity").val();
+        if (productQuantity <= 0) {
+            $("#quantity").removeClass("is-valid");
+            $("#quantity").addClass("is-invalid");
+        } else {
+            $("#quantity").removeClass("is-invalid");
+            $("#quantity").addClass("is-valid");
+        }
+    }
+
+    $().ready(function () {
+        $('[type="file"]').change(function () {
+            var fileInput = $(this);
+            if (fileInput.length && fileInput[0].files && fileInput[0].files.length) {
+                var url = window.URL || window.webkitURL;
+                var image = new Image();
+                image.onload = function () {
+                    $("#imgInp").removeClass("is-invalid");
+                    $("#imgInp").addClass("is-valid");
+                };
+                image.onerror = function () {
+
+                    $("#imgInp").removeClass("is-valid");
+                    $("#imgInp").addClass("is-invalid");
+                };
+                image.src = url.createObjectURL(fileInput[0].files[0]);
+            }
+        });
+    });
+
 </script>
 <style>
     .bg-login-image {
@@ -56,82 +109,87 @@
 </style>
 
 <body class="bg-gradient-primary">
+<section>
 
-<div class="container">
+    <div class="container">
 
-    <!-- Outer Row -->
-    <div class="row justify-content-center">
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
 
-        <div class="col-xl-10 col-lg-12 col-md-9">
+            <div class="col-xl-10 col-lg-12 col-md-9">
 
-            <div class="card o-hidden border-0 shadow-lg my-5">
-                <div class="card-body p-0">
-                    <!-- Nested Row within Card Body -->
-                    <div class="row">
-                        <div id="productImgDiv" class="col-lg-6 d-none d-lg-block bg-login-image">
-                            <img id="productImage" src="images/lock1.png">
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div id="productImgDiv" class="col-lg-6 d-none d-lg-block bg-login-image">
+                                <img id="productImage" src="images/lock1.png">
 
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="p-5">
-                                <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Add new Product</h1>
-                                </div>
-                                <form class="user" method="post">
-                                    <div class="form-group">
-                                        <input class="form-control "
-                                               id="name" name="name" placeholder="product name" type="text" required>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Add new Product</h1>
                                     </div>
-                                    <div class="form-group">
-                                        <input class="form-control "
-                                               id="price" name="price" placeholder="price" type="number" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="form-control "
-                                               id="quantity" name="quantity" placeholder="quantity" type="number"
-                                               required>
-                                    </div>
+                                    <form class="user" method="post" action="newProduct">
+                                        <div class="form-group">
+                                            <input class="form-control "
+                                                   id="name" name="name" placeholder="product name" type="text" required
+                                                   onchange="validateName()">
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="form-control "
+                                                   id="price" name="price" placeholder="price" type="number" required
+                                                   onchange="validatePrice()">
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="form-control "
+                                                   id="quantity" name="quantity" placeholder="quantity" type="number"
+                                                   required onchange="validateQuantity()">
+                                        </div>
 
-                                    <div class="form-group">
-                                        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref"
-                                                name="category" required>
-                                            <option value="" disabled selected hidden>Category</option>
-                                            <c:forEach items="${requestScope.categories}" var="iterator">
-                                                <option value="${iterator.id}">${iterator.name}</option>
+                                        <div class="form-group">
+                                            <select class="custom-select my-1 mr-sm-2 is-valid"
+                                                    id="inlineFormCustomSelectPref"
+                                                    name="category" required>
+                                                <!--<option value="" disabled selected hidden>others</option>-->
+                                                <option value="others" selected>others</option>
+                                                <c:forEach items="${requestScope.categories}" var="iterator">
+                                                    <option value="${iterator.id}">${iterator.name}</option>
 
-                                            </c:forEach>
-                                        </select>
-                                    </div>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
 
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input form-control " id="imgInp"
-                                               accept="image/*"
-                                               onchange="readURL(this)">
-                                        <label class="custom-file-label" id="imageLabel" for="imgInp">Choose
-                                            Image</label>
-                                    </div>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input form-control " id="imgInp"
+                                                   accept="image/*"
+                                                   onchange="readURL(this)">
+                                            <label class="custom-file-label" id="imageLabel" for="imgInp">Choose
+                                                Image</label>
+                                        </div>
 
-                                    <div class="form-group">
+                                        <div class="form-group">
 
                                         <textarea class="form-control " id="Textarea" rows="3"
                                                   placeholder="description.." style="margin-top: 8px"
                                                   name="description"></textarea>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary btn-block btn-user">Submit</button>
-                                </form>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-block btn-user">Submit</button>
+                                    </form>
 
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
 
         </div>
 
     </div>
-
-</div>
-
+</section>
 <!-- Bootstrap core JavaScript-->
 <script src="views/js/libs/jquery.min.js"></script>
 <script src="views/js/libs/bootstrap.bundle.min.js"></script>

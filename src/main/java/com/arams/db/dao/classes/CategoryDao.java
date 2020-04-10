@@ -21,6 +21,9 @@ public class CategoryDao implements ICategoryDao {
         CriteriaQuery<Category> criteriaQuery = categoryCriteria.createQuery(Category.class);
         criteriaQuery.from(Category.class);
         List<Category> categories = session.createQuery(criteriaQuery).getResultList();
+        session.close();
         return categories;
     }
+
+    
 }

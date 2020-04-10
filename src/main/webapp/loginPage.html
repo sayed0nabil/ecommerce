@@ -19,75 +19,6 @@
     <link href="views/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
-<script>
-
-    function ajaxCallBack(responseTxt, statusTxt, xhr) {
-        if (statusTxt == "success") {
-            let data = JSON.parse(responseTxt);
-            if (data.firstName == undefined) {
-                //document.getElementById("result").value = data.error;
-                console.log(data.error);
-            } else {
-                //document.getElementById("result").value = " welcom ya " + data.firstName + " " + data.lastName;
-                console.log("welcome ya : " + data.firstName + " , " + data.lastName);
-            }
-        }
-    }
-
-    function checkPassword(str) {
-        var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
-        return re.test(str);
-    }
-
-    function validateData() {
-        $(".error").hide();
-        let hasError = false;
-        let emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-        let emailblockReg =
-            /^([\w-\.]+@(?!yahoo.com)(?!hotmail.com)([\w-]+\.)+[\w-]{2,4})?$/;
-
-        let emailaddressVal = $("#email").val();
-        let passwordVal = $("#password").val();
-
-        if (emailaddressVal == '') {
-            $("#email").after('<p style="color:red;font-weight:bold;font-size:12px;" class="error">Please enter your email address.</p>');
-            hasError = true;
-        } else if (!emailReg.test(emailaddressVal)) {
-            $("#email").after('<p style="color:red;font-weight:bold;font-size:12px;" class="error">Enter a valid email address.</p>');
-            hasError = true;
-        } else if (passwordVal == '') {
-            $("#password").after('<p style="color:red;font-weight:bold;font-size:12px;" class="error">Please enter your password.</p>');
-            hasError = true;
-        } else if (!emailblockReg.test(emailaddressVal)) {
-            $("#email").after('<p style="color:red;font-weight:bold;font-size:12px;" class="error">No yahoo , hotmail emails.</p>');
-            hasError = true
-
-        } else if (!checkPassword(passwordVal)) {
-            $("#password").after('<p style="color:red;font-weight:bold;font-size:12px;" class="error">No Numbers , No UperCase chars or too short</p>');
-            hasError = true
-        }
-
-        if (hasError == true) {
-            return false;
-        }
-    }
-
-    $(document).ready(function () {
-
-        $("#submitBtn").click(function () {
-            if (validateData()) {
-                let email = $("#email").val();
-                let password = $("#password").val();
-                //let jsonData = {"email": email, "password": password}
-                $.post("LoginServlet",
-                    {"email": email, "password": password}
-                    , ajaxCallBack);
-            }
-
-        });
-    });
-</script>
-
 <body class="bg-gradient-primary">
 
 <div class="container">
@@ -106,6 +37,9 @@
                             <div class="p-5">
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                    <div id="error" class="alert alert-danger d-none" role="alert">
+                                        Email or Password is incorrect
+                                    </div>
                                 </div>
                                 <form class="user">
                                     <div class="form-group">
@@ -122,16 +56,11 @@
                                             <label class="custom-control-label" for="customCheck">Remember Me</label>
                                         </div>
                                     </div>
-                                    <a class="btn btn-primary btn-user btn-block" id="submitBtn">
+                                    <button type="button" class="btn btn-primary btn-user btn-block text-white" id="submitBtn">
                                         Login
-                                    </a>
+                                        <img width="20" height="20" id="loading" src="./views/images/loading.gif"  class="d-none" alt="Loading" />
+                                    </button>
                                     <hr>
-                                    <a class="btn btn-google btn-user btn-block" href="index.html">
-                                        <i class="fab fa-google fa-fw"></i> Login with Google
-                                    </a>
-                                    <a class="btn btn-facebook btn-user btn-block" href="index.html">
-                                        <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                    </a>
                                 </form>
                                 <hr>
                                 <div class="text-center">
@@ -162,6 +91,8 @@
 <!-- Custom scripts for all pages-->
 <script src="views/js/libs/sb-admin-2.min.js"></script>
 
+<!-- Your Custom Javascript-->
+<script src="./views/js/login.js"></script>
 </body>
 
 </html>

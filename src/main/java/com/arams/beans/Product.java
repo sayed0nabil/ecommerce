@@ -36,6 +36,11 @@ public class Product  implements java.io.Serializable {
      private String name;
      private int price;
      private int quantity;
+    private String description;
+
+
+
+
 
      @JsonManagedReference
      private Set<UserProductCart> userProductCarts = new HashSet<UserProductCart>(0);
@@ -112,6 +117,15 @@ public class Product  implements java.io.Serializable {
     
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    @Column(name="description")
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="product")
