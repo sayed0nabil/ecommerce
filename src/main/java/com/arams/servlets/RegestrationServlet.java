@@ -3,7 +3,6 @@ package com.arams.servlets;
 import com.arams.beans.User;
 import com.arams.db.dao.classes.UserDao;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,22 +22,21 @@ public class RegestrationServlet extends HttpServlet {
 
         @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//            response.setContentType("text/html");
-//            RequestDispatcher dispatcher=request.getRequestDispatcher("regeterform.html");
-//            dispatcher.forward(request,response);
+        ////getting the parameter from the request
         String fName=request.getParameter("first_name");
         String lName=request.getParameter("last_name");
         String email=request.getParameter("email");
         String password=request.getParameter(" pass");
         int credite= Integer.parseInt(request.getParameter("credite"));
         System.out.println(credite+"****"+fName+"***"+lName+"****"+email+"****"+password);
+            ////creating new user
         User user=new User();
         user.setCreditLimit(credite);
         user.setFirstName(fName);
         user.setLastName(lName);
         user.setEmail(email);
         user.setPassword(password);
-        user.setAdmin((byte)0);
+            user.setAdmin((byte) 0);
 
 
 //        User user=new User();
@@ -48,9 +46,10 @@ public class RegestrationServlet extends HttpServlet {
 //        user.setEmail("maro@gmail.com");
 //        user.setPassword("579865");
 //        user.setAdmin((byte)0);
-//
-        UserDao.addUser(user);
-        response.getWriter().write("user regesterd successfully");
 
-    }
+            //calling user dao
+            UserDao.addUser(user);
+            response.getWriter().write("user regesterd successfully");
+
+        }
 }
