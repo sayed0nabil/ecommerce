@@ -12,7 +12,7 @@ public class UserDao {
     public static void addUser(User user) {
         Session session = HibernateConnector.getInstance().getSession();
         session.beginTransaction();
-        session.persist(user);
+        session.saveOrUpdate(user);
         session.getTransaction().commit();
     }
 
