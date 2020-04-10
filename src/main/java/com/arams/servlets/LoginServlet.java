@@ -46,10 +46,8 @@ public class LoginServlet extends HttpServlet {
         //new TypeToken<User>() {}.getType()
 
         if (user != null) {
-            System.out.println(user.getFirstName() + " " + user.getLastName());
-            String loginResult = new ObjectMapper().writeValueAsString(user);
-            System.out.println(loginResult);
-            out.println(loginResult);
+            req.getSession(true).setAttribute("mine", user);
+            out.println("{}");
         } else {
             out.println("{\"error\":\"check email or password\"}");
         }

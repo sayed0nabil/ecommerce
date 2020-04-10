@@ -36,12 +36,29 @@
                         <i class="fas fa-search"></i>
                     </button>
                 </form>
-                <button class="btn btn-primary mr-2">Login</button>
-                Or
-                <a href="#" class="mx-2">Register</a>
-                <span class="cart ml-3">
-                    <img width="40" height="40" src="./views/images/cart.png" alt="Cart" />
-                </span>
+                <c:choose>
+                    <c:when test="${ empty sessionScope.mine}">
+                        <a class="btn btn-primary mr-2" href="loginPage.html">Login</a>
+                        Or
+                        <a href="#" class="mx-2">Register</a>
+                        <span class="cart ml-3">
+                            <img width="40" height="40" src="./views/images/cart.png" alt="Cart" />
+                        </span>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Myprofile
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="logout">Logout</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+
             </div>
         </nav>
         <nav class="categories navbar navbar-expand-lg navbar-dark bg-secondary p-0 text-center">
@@ -50,9 +67,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto">
-                    <c:forEach var = "i" begin = "1" end = "5">
+                    <c:forEach items="${requestScope.categories}" var="category">
                         <li class="nav-item active">
-                          <a class="nav-link" href="#">Category <c:out value = "${i}"/> <span class="sr-only">(current)</span></a>
+                          <a class="nav-link" href="#"><c:out value = "${category.getName()}"/> <span class="sr-only">(current)</span></a>
                          </li>
                     </c:forEach>
                 </ul>
