@@ -2,7 +2,7 @@ function ajaxCallBack(responseTxt, statusTxt, xhr) {
     if (statusTxt == "success") {
         let data = JSON.parse(responseTxt);
         if(typeof data.error === "undefined")
-            window.location.replace("http://localhost:9090/ecommerce_war/main");
+            window.location.replace("http://localhost:9090/ecommerce/main");
         else 
             $("#error").removeClass("d-none");
     }
