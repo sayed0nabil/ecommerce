@@ -59,11 +59,13 @@ public class RegistrationServlet extends HttpServlet {
 
             User user = setUserData(request);
             UserDao.addUser(user);
+
             if (imageFile.getSize() != 0) {
                 new File(usersImageDirectory).mkdirs();
                 File newFile = new File(usersImageDirectory + user.getId());
                 newFile.createNewFile();
                 imageFile.write(newFile);
+
             }
         } catch (FileUploadException e) {
             e.printStackTrace();
@@ -78,7 +80,11 @@ public class RegistrationServlet extends HttpServlet {
         User user = new User();
         try {
 
-            DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd");
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+
+            Date temp = dateFormat.parse((String) request.getAttribute("birth_date"));
+
+            System.out.println(temp.toString() + " parsed from " + request.getAttribute("birth_date"));
 
             user.setAdmin((byte) 0);
             user.setBirthDate(dateFormat.parse((String) request.getAttribute("birth_date")));
