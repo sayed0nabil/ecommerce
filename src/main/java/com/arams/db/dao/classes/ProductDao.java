@@ -6,16 +6,18 @@ import com.arams.beans.ProductImage;
 import com.arams.db.connection.HibernateConnector;
 import com.arams.db.dao.interfaces.IProductDao;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
 public class ProductDao {
 
-    public  static Product addProduct(Product product) {
+    public static Product addProduct(Product product) {
         Session session = HibernateConnector.getInstance().getSession();
         session.beginTransaction();
         session.persist(product);
@@ -56,5 +58,17 @@ public class ProductDao {
         criteriaQuery.from(Product.class);
         List<Product> products = session.createQuery(criteriaQuery).getResultList();
         return products;
+    }
+
+    public static Product getProductById(int id) {
+        Session session = HibernateConnector.getInstance().getSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Product> query = builder.createQuery(Product.class);
+        Root<Product> root = query.from(Product.class);
+        query.select(root).where(builder.equal(root.get("id"), id));
+        Query<Product> q=session.createQuery(query);
+        Product product =q.getSingleResult();
+        session.close();
+        return product;
     }
 }
