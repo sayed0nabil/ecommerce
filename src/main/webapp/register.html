@@ -14,8 +14,7 @@
 
 </head>
 <body class="bg-gradient-primary">
-<form class="user" onsubmit="return onSubmit();">
-
+<form class="user" method="post" action="register" enctype="multipart/form-data" onsubmit="return onSubmit();">
 
     <div id="modal" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
@@ -56,7 +55,7 @@
                                class="text-light mt-3 btn btn-primary ">
                                 Upload
                             </a>
-                            <input accept="image/*" onchange="fileInputOnChange()"
+                            <input name="image_name" accept="image/*" onchange="fileInputOnChange()"
                                    id="HTMLFileChooser" value="Upload" type="file" class="d-none"/>
                         </div>
                     </div>
@@ -67,12 +66,12 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input required="required" title="Please dont enter any numbers" pattern="[a-zA-Z]*"
+                                    <input name="first_name" required="required" title="Please dont enter any numbers" pattern="[a-zA-Z]*"
                                            type="text" class="form-control form-control-user" id="FirstName"
                                            placeholder="First Name">
                                 </div>
                                 <div class="col-sm-6">
-                                    <input required="required" title="Please dont enter any numbers" pattern="[a-zA-Z]*"
+                                    <input name="last_name" required="required" title="Please dont enter any numbers" pattern="[a-zA-Z]*"
                                            type="text" class="form-control form-control-user" id="LastName"
                                            placeholder="Last Name">
                                 </div>
@@ -80,13 +79,13 @@
                             <div class="form-group row">
 
                                 <div class="col-sm-8">
-                                    <input required="required" type="email" class="form-control form-control-user"
+                                    <input name="email" required="required" type="email" class="form-control form-control-user"
                                            id="Email"
                                            placeholder="Email Address">
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <input required="required" type="text" onblur="(this.type='text')"
+                                    <input name="birth_date" required="required" type="text" onblur="(this.type='text')"
                                            onfocus="(this.type='date')" class="form-control form-control-user" id="Date"
                                            placeholder="Birth date">
                                 </div>
@@ -94,7 +93,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$" title="Password must be at least 8 characters,
+                                    <input name="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$" title="Password must be at least 8 characters,
                                     no more than 16 characters, and must include at least one upper case letter, one lower case letter, and
                                     one numeric digit" required="required" type="password"
                                            class="form-control form-control-user"
@@ -109,7 +108,7 @@
                                    class="btn btn-primary btn-user btn-block"/>
                             <hr>
                             <div class="text-center">
-                                <a class="small" href="login.html">Already have an account? Login!</a>
+                                <a class="small" href="loginPage.html">Already have an account? Login!</a>
                             </div>
                         </div>
                     </div>
