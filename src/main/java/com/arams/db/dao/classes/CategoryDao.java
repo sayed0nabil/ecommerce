@@ -11,9 +11,9 @@ import javax.persistence.criteria.CriteriaQuery;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryDao implements ICategoryDao {
-    @Override
-    public List<Category> getAllCategories() {
+public class CategoryDao {
+
+    public static List<Category> getAllCategories() {
 
         HibernateConnector hibernateConnector = HibernateConnector.getInstance();
         Session session = hibernateConnector.getSession();
