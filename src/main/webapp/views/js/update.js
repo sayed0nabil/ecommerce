@@ -1,26 +1,15 @@
 $(document).ready(function () {
-    // function getUserId(responseTxt, statusTxt, xhr){
-    //     if (statusTxt== "success"){
-    //         if(!responseTxt == ""){
-    //             let data = JSON.parse(responseTxt);
-    //             let userId = data.userid;
-    //           //  $.get("updateProfile", ajaxCallBack);
-    //         }
-    //     }
-    // }
-    //
-    // $.get("mine", getUserId);
-    $.get("updateProfile", ajaxCallBack);
+
+    $.get("userProfile", ajaxCallBack);
 
     function ajaxCallBack(responseTxt, statusTxt, xhr) {
         if (statusTxt == "success") {
             let data = JSON.parse(responseTxt);
-            $("#firstname").val("alaa");
-            $("#lastname").val("albadry");
-            $("#email").val("a@g.com");
-            $("#birthdate").val("2020-4-12");
-            $("#creditlimit").val("500");
-            $.get("uploadPhoto", getUserImage);
+            $("#firstname").val(data.firstNmae);
+            $("#lastname").val(data.lastName);
+            $("#email").val(data.email);
+            $("#birthdate").val(data.birthDate);
+            // $.get("/images/users", getUserImage);
         }
     }
 
@@ -33,6 +22,10 @@ $(document).ready(function () {
         }
     }
 
+    $("#ceditBtn").click(function () {
+        let creditlimit = $("#creditlimit").val();
+        $post("CreditLimitServlet", {"creditlimit": creditlimit}, criditLimitStatus);
+    });
 
 });
 
@@ -57,6 +50,27 @@ function fileInputOnChange() {
 function imageLoadingErrorMessage(event) {
 
     $("#UserImage").attr("src", "views/images/user.png");
+    $("#modal-title").innerHTML = "Image upload error";
+    $("#modal-message").innerHTML = "Please choose an image with a valid format.";
     $('#modal').modal('show');
+
+}
+
+
+function criditLimitStatus(responseTxt, statusTxt, xhr) {
+    if (statusTxt == "success") {
+
+        if (responseTxt == "0") {
+            $("#modal1-title").innerHTML = "Your Code Not Found";
+            $("#modal1-message").innerHTML = "Please Try Again or Call Admin";
+        } else if (responseTxt == "1") {
+            $("#modal1-title").innerHTML = "Your Code Used Before";
+            $("#modal1-message").innerHTML = "Please Try Again or Call Admin";
+        } else if (responseTxt == "2") {
+            $("#modal1-title").innerHTML = "Your Limit Charged Successfully";
+            $("#modal1-message").innerHTML = "Please Try Again or Call Admin";
+        }
+        $('#modal1').modal('show');
+    }
 
 }

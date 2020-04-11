@@ -36,6 +36,25 @@
         </div>
     </div>
 
+    <div class="modal" id="modal1" role="dialog" tabindex="-1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Charge Status</h5>
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Check Status</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal" type="button">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <div class="card  o-hidden border-0 shadow-lg my-3">
             <div class="card-body p-0">
@@ -50,7 +69,7 @@
                             <!--style="border-radius: 100px;width:11rem;height:12rem;object-fit: fill;"-->
                             <img class="rounded-circle" id="UserImage"
                                  onerror="imageLoadingErrorMessage(event)"
-                                 src="views/images/user.png"
+                                 src="/images/users"
                                  style="width:11rem;height:12rem;"/>
                             <a class="text-light mt-3 btn btn-primary "
                                onclick="$('#HTMLFileChooser').trigger('click')">
@@ -90,6 +109,12 @@
                                            type="text">
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <input class="form-control form-control-user" disabled id="userlimit"
+                                           name="userlimit" placeholder="Your Limit" required="required" type="text">
+                                </div>
+                            </div>
                             <input class="btn btn-primary btn-user btn-block" type="submit"
                                    value="Save Changes"/>
                             <hr>
@@ -103,7 +128,7 @@
     </div>
 </form>
 
-<form action="chargeLimit" method="post">
+<form class="user-credit">
     <div class="container">
         <div class="card  o-hidden border-0 shadow-lg my-3">
             <div class="card-body p-0">
@@ -119,7 +144,7 @@
                                            placeholder="Credit Limit" required="required" type="text">
                                 </div>
                             </div>
-                            <input class="btn btn-primary btn-user btn-block" type="submit"
+                            <input class="btn btn-primary btn-user btn-block" id="ceditBtn" type="button"
                                    value="Charge Limit"/>
                             <hr>
                         </div>
