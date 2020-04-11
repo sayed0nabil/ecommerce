@@ -37,6 +37,8 @@ public class Product  implements java.io.Serializable {
      private int price;
      private int quantity;
 
+     private String description;
+
      @JsonManagedReference
      private Set<UserProductCart> userProductCarts = new HashSet<UserProductCart>(0);
 
@@ -133,8 +135,14 @@ public class Product  implements java.io.Serializable {
     }
 
 
+    @Column(name="description", nullable=true)
+    public String getDescription() {
+        return description;
+    }
 
-
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
 
 
