@@ -4,6 +4,12 @@
          id="Your_WebApp_ID"
          version="2.5">
     <display-name>E-commerce Project Using Servlet And JSP</display-name>
+
+    <context-param>
+        <param-name>user-image-directory</param-name>
+        <param-value>../../../users/</param-value>
+    </context-param>
+
     <filter>
         <filter-name>CokieesFilter</filter-name>
         <filter-class>com.arams.filters.LoginFilter</filter-class>
