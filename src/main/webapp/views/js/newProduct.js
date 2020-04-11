@@ -1,3 +1,5 @@
+var isValid = true;
+
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -16,9 +18,11 @@ function validateName() {
     if (productName.trim().length == 0) {
         $("#name").removeClass("is-valid");
         $("#name").addClass("is-invalid");
+        isValid = false;
     } else {
         $("#name").removeClass("is-invalid");
         $("#name").addClass("is-valid");
+        isValid = true;
     }
 }
 
@@ -27,9 +31,11 @@ function validatePrice() {
     if (productPrice <= 0) {
         $("#price").removeClass("is-valid");
         $("#price").addClass("is-invalid");
+        isValid = false;
     } else {
         $("#price").removeClass("is-invalid");
         $("#price").addClass("is-valid");
+        isValid = true;
     }
 }
 
@@ -38,9 +44,18 @@ function validateQuantity() {
     if (productQuantity <= 0) {
         $("#quantity").removeClass("is-valid");
         $("#quantity").addClass("is-invalid");
+        isValid = false;
     } else {
         $("#quantity").removeClass("is-invalid");
         $("#quantity").addClass("is-valid");
+        isValid = true;
+    }
+}
+
+function validateForm() {
+    if (!isValid) {
+        $("#error").removeClass("d-none");
+        return false;
     }
 }
 
@@ -53,11 +68,12 @@ $().ready(function () {
             image.onload = function () {
                 $("#imgInp").removeClass("is-invalid");
                 $("#imgInp").addClass("is-valid");
+                isValid = true;
             };
             image.onerror = function () {
-
                 $("#imgInp").removeClass("is-valid");
                 $("#imgInp").addClass("is-invalid");
+                isValid = false;
             };
             image.src = url.createObjectURL(fileInput[0].files[0]);
         }

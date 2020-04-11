@@ -2,13 +2,16 @@ package com.arams.db.dao.classes;
 
 import com.arams.beans.Category;
 import com.arams.beans.Product;
+import com.arams.beans.ProductImage;
 import com.arams.db.connection.HibernateConnector;
 import com.arams.db.dao.interfaces.IProductDao;
 import org.hibernate.Session;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 public class ProductDao {
 
@@ -16,6 +19,12 @@ public class ProductDao {
         Session session = HibernateConnector.getInstance().getSession();
         session.beginTransaction();
         session.persist(product);
+        Set<ProductImage> productImages = product.getProductImages();
+        for (Iterator<ProductImage> it = productImages.iterator(); it.hasNext(); ) {
+            ProductImage productImage = it.next();
+            productImage.getId().setProductId(product.getId());
+            session.persist(productImage);
+        }
         session.getTransaction().commit();
         session.close();
         return product;
