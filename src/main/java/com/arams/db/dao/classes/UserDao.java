@@ -42,7 +42,14 @@ public class UserDao {
 
     }
 
-    public void updateUser(User user) {
+    public static void updateUser(User user) {
+
+        Session session = HibernateConnector.getInstance().getSession();
+        session.beginTransaction();
+        session.merge(user);
+        session.getTransaction().commit();
+
+
     }
 
 }
