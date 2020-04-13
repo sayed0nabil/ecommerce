@@ -82,10 +82,6 @@ public class RegistrationServlet extends HttpServlet {
 
             DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
 
-            Date temp = dateFormat.parse((String) request.getAttribute("birth_date"));
-
-            System.out.println(temp.toString() + " parsed from " + request.getAttribute("birth_date"));
-
             user.setAdmin((byte) 0);
             user.setBirthDate(dateFormat.parse((String) request.getAttribute("birth_date")));
             user.setCreditLimit(0);

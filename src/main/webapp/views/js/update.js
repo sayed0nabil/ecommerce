@@ -24,7 +24,7 @@ $(document).ready(function () {
 
     $("#ceditBtn").click(function () {
         let creditlimit = $("#creditlimit").val();
-        $post("CreditLimitServlet", {"creditlimit": creditlimit}, criditLimitStatus);
+        $.post("CreditLimitServlet", {"creditlimit": creditlimit}, criditLimitStatus);
     });
 
 });
@@ -56,19 +56,18 @@ function imageLoadingErrorMessage(event) {
 
 }
 
-
 function criditLimitStatus(responseTxt, statusTxt, xhr) {
     if (statusTxt == "success") {
 
         if (responseTxt == "0") {
-            $("#modal1-title").innerHTML = "Your Code Not Found";
-            $("#modal1-message").innerHTML = "Please Try Again or Call Admin";
+            $("#modal1-title")[0].innerHTML = "Your Code Not Found";
+            $("#modal1-message")[0].innerHTML = "Please Try Again or Call Admin";
         } else if (responseTxt == "1") {
-            $("#modal1-title").innerHTML = "Your Code Used Before";
-            $("#modal1-message").innerHTML = "Please Try Again or Call Admin";
+            $("#modal1-title")[0].innerHTML = "Your Code Used Before";
+            $("#modal1-message")[0].innerHTML = "Please Call Admin";
         } else if (responseTxt == "2") {
-            $("#modal1-title").innerHTML = "Your Limit Charged Successfully";
-            $("#modal1-message").innerHTML = "Please Try Again or Call Admin";
+            $("#modal1-title")[0].innerHTML = "Thank you";
+            $("#modal1-message")[0].innerHTML = "Your Limit Charged Successfully";
         }
         $('#modal1').modal('show');
     }
