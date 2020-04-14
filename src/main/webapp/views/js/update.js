@@ -5,10 +5,11 @@ $(document).ready(function () {
     function ajaxCallBack(responseTxt, statusTxt, xhr) {
         if (statusTxt == "success") {
             let data = JSON.parse(responseTxt);
-            $("#firstname").val(data.firstNmae);
-            $("#lastname").val(data.lastName);
-            $("#email").val(data.email);
-            $("#birthdate").val(data.birthDate);
+            $("#FirstName").val(data.firstName);
+            $("#LastName").val(data.lastName);
+            $("#Email").val(data.email);
+            $("#BirthDate").val(data.birthDate);
+            $("#User_limit").val(data.creditLimit)
             // $.get("/images/users", getUserImage);
         }
     }

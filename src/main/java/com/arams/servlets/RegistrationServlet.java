@@ -1,10 +1,6 @@
 package com.arams.servlets;
 
 import com.arams.beans.User;
-
-import java.nio.file.Paths;
-import java.text.DateFormat;
-
 import com.arams.db.dao.classes.UserDao;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -18,9 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @WebServlet("/register")
@@ -72,7 +68,7 @@ public class RegistrationServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        response.sendRedirect("loginPage.html");
     }
 
     private User setUserData(HttpServletRequest request) {
