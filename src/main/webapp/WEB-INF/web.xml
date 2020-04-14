@@ -5,6 +5,10 @@
          version="2.5">
     <display-name>E-commerce Project Using Servlet And JSP</display-name>
 
+    <welcome-file-list>
+        <welcome-file>/loginPage.html</welcome-file>
+    </welcome-file-list>
+    
     <context-param>
         <param-name>user-image-directory</param-name>
         <param-value>../../../users/</param-value>
