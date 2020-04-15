@@ -16,6 +16,8 @@
     <meta content="" name="description">
     <meta content="" name="author">
     <script src="views/js/libs/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
+
     <script src="views/js/newProduct.js"></script>
     <title>add new product </title>
 
@@ -36,6 +38,9 @@
         width: 100%;
         height: 90%;
         margin:2em;
+    }
+    .custom-file{
+        margin-bottom: 7px;
     }
 
 </style>
@@ -64,16 +69,16 @@
                                         <h1 class="h4 text-gray-900 mb-4">Add new Product</h1>
                                     </div>
                                     <div id="error" class="alert alert-danger d-none" role="alert">
-                                       please fill all fields!
+                                       please fill all fields and set different images!
                                     </div>
                                     <form class="user" method="post" action="newProduct" onsubmit="return validateForm()" enctype="multipart/form-data">
                                         <div class="form-group">
-                                            <input class="form-control "
+                                            <input class="form-control " multiple
                                                    id="name" name="name" placeholder="product name" type="text" required
                                                    onchange="validateName()">
                                         </div>
                                         <div class="form-group">
-                                            <input class="form-control "
+                                            <input class="form-control " multiple
                                                    id="price" name="price" placeholder="price" type="number" required
                                                    onchange="validatePrice()">
                                         </div>
@@ -99,10 +104,26 @@
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input form-control " id="imgInp"
                                                    accept="image/*"
-                                                   onchange="readURL(this)" name="productImage">
-                                            <label class="custom-file-label" id="imageLabel" for="imgInp">Choose
+                                                   onchange="readURL(this)" name="productImage" text-truncate>
+                                            <label class="custom-file-label" id="imageLabel" for="imgInp">Choose Primary
                                                 Image</label>
                                         </div>
+
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input form-control " id="imgInp2"
+                                                   accept="image/*" onchange="validateImage2()"
+                                                   name="productImage2" text-truncate>
+                                            <label class="custom-file-label" id="imageLabel2" for="imgInp2">Choose
+                                                Image</label>
+                                        </div>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input form-control " id="imgInp3"
+                                                   accept="image/*" onchange="validateImage3()"
+                                                   name="productImage3" text-truncate>
+                                            <label class="custom-file-label" id="imageLabel3" for="imgInp2">Choose
+                                                Image</label>
+                                        </div>
+                                        <p id="imageswarning"></p>
 
                                         <div class="form-group">
 

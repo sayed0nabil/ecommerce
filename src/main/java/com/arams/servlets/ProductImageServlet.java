@@ -19,8 +19,9 @@ public class ProductImageServlet extends HttpServlet {
             throws ServletException, IOException {
         ServletContext sc = getServletContext();
         String imageUrl = request.getParameter("image");
+        String path = System.getProperty("user.home")+sc.getInitParameter("product-image-directory");
         FileInputStream fileInputStream
-                = new FileInputStream("D:/ITI/WEB/products/" + imageUrl);
+                = new FileInputStream(path+ "\\" + imageUrl);
 
         OutputStream os = response.getOutputStream();
         if (fileInputStream == null) {

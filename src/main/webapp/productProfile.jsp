@@ -39,7 +39,26 @@
         .productProfile .productDetails {
             margin-left: 10px;
         }
+
+        .productImages {
+            margin: 20px auto;
+        }
+
+        .productImage {
+            max-width: 75px;
+            margin-right: 5px;
+            margin-left: 8px;
+        }
+
+        .productPrimaryImage {
+            max-width: 100%;
+        }
     </style>
+    <script>
+        function changeImage(img) {
+            document.getElementById("chosenImage").src = img.src;
+        }
+    </script>
 </head>
 <body>
 
@@ -47,10 +66,9 @@
     <section class="productProfile">
         <div class="row">
             <div class="col-md-4 col-sm-12">
-                <c:forEach items="${requestScope.product.productImages}" var="iterator">
-                    <img src="http://localhost:8989/ecommerce_war/productImages?image=${iterator.id.url}"
-                         class="productImage">
-                </c:forEach>
+
+                <img src="http://localhost:8989/${pageContext.request.contextPath}/productImages?image=${primaryImage.id.url}"
+                     class="productPrimaryImage" id="chosenImage">
             </div>
             <div class="col-md-8 col-sm-12 border-left-primary">
                 <div class="productDetails ">
@@ -60,6 +78,14 @@
                     <span style="font-size: 18px"><b>Description</b></span>
 
                     <p>${requestScope.product.description}</p>
+                    <div class=" productImages">
+                        <c:forEach items="${requestScope.product.productImages}" var="iterator">
+
+                            <img src="http://localhost:8989/${pageContext.request.contextPath}/productImages?image=${iterator.id.url}"
+                                 class="productImage" onclick="changeImage(this)">
+
+                        </c:forEach>
+                    </div>
 
                     <label>Qty</label>
                     <select class="custom-select my-1 mr-sm-2">
@@ -74,7 +100,10 @@
 
             </div>
         </div>
+        <div class="row">
 
+
+        </div>
     </section>
 </div>
 </body>

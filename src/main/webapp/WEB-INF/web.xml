@@ -10,6 +10,11 @@
         <param-value>../../../users/</param-value>
     </context-param>
 
+    <context-param>
+        <param-name>product-image-directory</param-name>
+        <param-value>/products</param-value>
+    </context-param>
+
     <filter>
         <filter-name>CokieesFilter</filter-name>
         <filter-class>com.arams.filters.LoginFilter</filter-class>

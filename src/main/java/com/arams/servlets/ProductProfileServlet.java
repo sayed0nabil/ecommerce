@@ -22,6 +22,7 @@ public class ProductProfileServlet extends HttpServlet {
             int productId = Integer.parseInt(pId);
             Product product = ProductDao.getProductById(productId);
             request.setAttribute("product", product);
+            request.setAttribute("primaryImage" , product.getProductImages().iterator().next());
             RequestDispatcher rd
                     = request.getRequestDispatcher("productProfile.jsp");
             rd.forward(request, response);
