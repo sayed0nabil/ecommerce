@@ -2,6 +2,7 @@ package com.arams.beans;
 // Generated Apr 8, 2020, 8:15:09 AM by Hibernate Tools 4.3.1
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.Date;
@@ -39,11 +40,12 @@ public class User implements java.io.Serializable {
     private String lastName;
     private String email;
     private String password;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-mm-dd")
     private Date birthDate;
     private byte admin;
 
     @JsonManagedReference
-    private Set<UserProductCart> userProductCarts = new HashSet<UserProductCart>(0);
+    private Set<UserProductCart> userProductCarts = new HashSet<>(0);
 
     public User() {
     }

@@ -14,7 +14,7 @@
 
 </head>
 <body class="bg-gradient-primary">
-<form action="updateProfile" class="user-profile" enctype="multipart/form-data" method="post">
+<form action="userProfile" class="user-profile" enctype="multipart/form-data" method="post">
 
 
     <div class="modal" id="modal" role="dialog" tabindex="-1">
@@ -75,7 +75,7 @@
                                onclick="$('#HTMLFileChooser').trigger('click')">
                                 Upload
                             </a>
-                            <input accept="image/*" class="d-none"
+                            <input name="image_name" accept="image/*" class="d-none"
                                    id="HTMLFileChooser" onchange="fileInputOnChange()" type="file" value="Upload"/>
                         </div>
                     </div>
@@ -86,12 +86,14 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input class="form-control form-control-user" id="FirstName" pattern="[a-zA-Z]*"
+                                    <input class="form-control form-control-user" id="FirstName" name="FirstName"
+                                           pattern="[a-zA-Z]*"
                                            placeholder="First Name" required="required"
                                            title="Please dont enter any numbers" type="text">
                                 </div>
                                 <div class="col-sm-6">
-                                    <input class="form-control form-control-user" id="LastName" pattern="[a-zA-Z]*"
+                                    <input class="form-control form-control-user" id="LastName" name="LastName"
+                                           pattern="[a-zA-Z]*"
                                            placeholder="Last Name" required="required"
                                            title="Please dont enter any numbers" type="text">
                                 </div>
@@ -99,20 +101,22 @@
                             <div class="form-group row">
 
                                 <div class="col-sm-8">
-                                    <input class="form-control form-control-user" id="Email" placeholder="Email"
+                                    <input class="form-control form-control-user" id="Email" name="Email"
+                                           placeholder="Email"
                                            required="required" type="email">
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <input class="form-control form-control-user" id="Date" onblur="(this.type='text')"
-                                           onfocus="(this.type='date')" placeholder="Birth date" required="required"
+                                    <input class="form-control form-control-user" id="BirthDate" name="BirthDate"
+                                           onblur="(this.type='text')" onfocus="(this.type='date')"
+                                           placeholder="Birth date" required="required"
                                            type="text">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-12">
-                                    <input class="form-control form-control-user" disabled id="userlimit"
-                                           name="userlimit" placeholder="Your Limit" required="required" type="text">
+                                    <input class="form-control form-control-user" disabled id="User_limit"
+                                           name="User_limit" placeholder="Your Limit" required="required" type="text">
                                 </div>
                             </div>
                             <input class="btn btn-primary btn-user btn-block" type="submit"

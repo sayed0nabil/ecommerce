@@ -5,10 +5,11 @@ $(document).ready(function () {
     function ajaxCallBack(responseTxt, statusTxt, xhr) {
         if (statusTxt == "success") {
             let data = JSON.parse(responseTxt);
-            $("#firstname").val(data.firstNmae);
-            $("#lastname").val(data.lastName);
-            $("#email").val(data.email);
-            $("#birthdate").val(data.birthDate);
+            $("#FirstName").val(data.firstName);
+            $("#LastName").val(data.lastName);
+            $("#Email").val(data.email);
+            $("#BirthDate").val(data.birthDate);
+            $("#User_limit").val(data.creditLimit)
             // $.get("/images/users", getUserImage);
         }
     }
@@ -65,9 +66,11 @@ function criditLimitStatus(responseTxt, statusTxt, xhr) {
         } else if (responseTxt == "1") {
             $("#modal1-title")[0].innerHTML = "Your Code Used Before";
             $("#modal1-message")[0].innerHTML = "Please Call Admin";
-        } else if (responseTxt == "2") {
+        } else if (responseTxt[0] == "2") {
             $("#modal1-title")[0].innerHTML = "Thank you";
             $("#modal1-message")[0].innerHTML = "Your Limit Charged Successfully";
+            $("#User_limit").val(parseInt(responseTxt.split(":")[1]) + parseInt($("#User_limit").val()));
+            $("#creditlimit").val("");
         }
         $('#modal1').modal('show');
     }

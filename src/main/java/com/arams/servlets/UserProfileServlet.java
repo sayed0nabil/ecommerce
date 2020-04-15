@@ -73,7 +73,7 @@ public class UserProfileServlet extends HttpServlet {
             }
 
             User user = setUserData(request);
-            UserDao.addUser(user);
+            UserDao.updateUser(user);
 
             if (imageFile.getSize() != 0) {
                 new File(usersImageDirectory).mkdirs();
@@ -82,32 +82,34 @@ public class UserProfileServlet extends HttpServlet {
                 imageFile.write(newFile);
 
             }
+
         } catch (FileUploadException e) {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        response.sendRedirect("customerProfile.html");
     }
 
     private User setUserData(HttpServletRequest request) {
 
-        User user = new User();
+        User loggedInUser = (User) request.getSession().getAttribute("mine");
         try {
 
             DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
 
-            user.setBirthDate(dateFormat.parse((String) request.getAttribute("birth_date")));
-            user.setFirstName((String) request.getAttribute("first_name"));
-            user.setLastName((String) request.getAttribute("last_name"));
-            user.setEmail((String) request.getAttribute("email"));
-            user.setId(Integer.parseInt((String)request.getAttribute("id")));
+            loggedInUser.setBirthDate(dateFormat.parse((String) request.getAttribute("BirthDate")));
+            loggedInUser.setFirstName((String) request.getAttribute("FirstName"));
+            loggedInUser.setLastName((String) request.getAttribute("LastName"));
+            loggedInUser.setEmail((String) request.getAttribute("Email"));
+            loggedInUser.setId(loggedInUser.getId());//Integer.parseInt((String)request.getAttribute("id"))
+
 
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        return user;
+        return loggedInUser;
 
     }
 
