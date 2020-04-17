@@ -16,7 +16,32 @@ function checkPasswordMatch() {
 
 function onSubmit() {
 
-    return checkPasswordMatch();
+    $("#submit").prop("disabled", true);
+    var isValid = (checkPasswordMatch() && checkEmailDuplicate($("#Email")[0].value));
+    $("#submit").prop("disabled", false);
+
+    return isValid;
+
+}
+
+function checkEmailDuplicate(email) {
+
+    var responseText = $.ajax({
+        type: "GET",
+        url: "emailChecker?email=" + email,
+        async: false
+    }).responseText;
+
+    if (responseText == "true") {
+
+        $("#Email")[0].style.border = "red solid 2px";
+        $("#modal-title")[0].innerHTML = "Account already registered";
+        $("#modal-message")[0].innerHTML = "Sorry, but your account is already registered";
+        $('#modal').modal('show');
+
+    }
+
+    return responseText == "true" ? false : true;
 
 }
 
@@ -40,6 +65,8 @@ function fileInputOnChange() {
 function imageLoadingErrorMessage(event) {
 
     $("#UserImage").attr("src", "views/images/user.png");
+    $("#modal-title").innerHTML = "Image upload error";
+    $("#modal-message").innerHTML = "Please choose an image with a valid format.";
     $('#modal').modal('show');
 
 }

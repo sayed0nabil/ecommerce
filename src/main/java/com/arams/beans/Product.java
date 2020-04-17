@@ -11,7 +11,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+
 import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,30 +27,30 @@ import javax.persistence.Table;
 @Table(name = "product"
         , catalog = "ecommerce"
 )
-public class Product  implements java.io.Serializable {
+public class Product implements java.io.Serializable {
 
 
-     private Integer id;
+    private Integer id;
 
-     @JsonBackReference
-     private Category category;
+    @JsonBackReference
+    private Category category;
 
-     private String name;
-     private int price;
-     private int quantity;
+    private String name;
+    private int price;
+    private int quantity;
+    private String description;
 
-     private String description;
 
-     @JsonManagedReference
-     private Set<UserProductCart> userProductCarts = new HashSet<UserProductCart>(0);
+    @JsonManagedReference
+    private Set<UserProductCart> userProductCarts = new HashSet<UserProductCart>(0);
 
-     @JsonManagedReference
-     private Set<ProductImage> productImages = new HashSet<ProductImage>(0);
+    @JsonManagedReference
+    private Set<ProductImage> productImages = new HashSet<ProductImage>(0);
 
     public Product() {
     }
 
-	
+
     public Product(Category category, String name, int price, int quantity) {
         this.category = category;
         this.name = name;
@@ -57,62 +59,63 @@ public class Product  implements java.io.Serializable {
     }
 
     public Product(Category category, String name, int price, int quantity, Set<UserProductCart> userProductCarts, Set<ProductImage> productImages) {
-       this.category = category;
-       this.name = name;
-       this.price = price;
-       this.quantity = quantity;
-       this.userProductCarts = userProductCarts;
-       this.productImages = productImages;
+        this.category = category;
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.userProductCarts = userProductCarts;
+        this.productImages = productImages;
     }
-   
-     @Id @GeneratedValue(strategy=IDENTITY)
 
-    
-    @Column(name="id", unique=true, nullable=false)
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+
+
+    @Column(name = "id", unique = true, nullable = false)
     public Integer getId() {
         return this.id;
     }
-    
+
     public void setId(Integer id) {
         this.id = id;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="category_id", nullable=false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", nullable = false)
     public Category getCategory() {
         return this.category;
     }
-    
+
     public void setCategory(Category category) {
         this.category = category;
     }
 
-    
-    @Column(name="name", nullable=false, length=45)
+
+    @Column(name = "name", nullable = false, length = 45)
     public String getName() {
         return this.name;
     }
-    
+
     public void setName(String name) {
         this.name = name;
     }
 
-    
-    @Column(name="price", nullable=false)
+
+    @Column(name = "price", nullable = false)
     public int getPrice() {
         return this.price;
     }
-    
+
     public void setPrice(int price) {
         this.price = price;
     }
 
-    
-    @Column(name="quantity", nullable=false)
+
+    @Column(name = "quantity", nullable = false)
     public int getQuantity() {
         return this.quantity;
     }
-    
+
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
@@ -130,16 +133,16 @@ public class Product  implements java.io.Serializable {
     public Set<UserProductCart> getUserProductCarts() {
         return this.userProductCarts;
     }
-    
+
     public void setUserProductCarts(Set<UserProductCart> userProductCarts) {
         this.userProductCarts = userProductCarts;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="product")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "product")
     public Set<ProductImage> getProductImages() {
         return this.productImages;
     }
-    
+
     public void setProductImages(Set<ProductImage> productImages) {
         this.productImages = productImages;
     }

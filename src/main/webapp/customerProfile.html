@@ -1,0 +1,168 @@
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <meta content="" name="description">
+    <meta content="alaa" name="author">
+    <title>Create an account</title>
+    <!-- Custom fonts-->
+    <link href="views/css/libs/custom/all.css" rel="stylesheet" type="text/css">
+    <!-- Custom styles for this template-->
+    <link href="views/css/libs/custom/sb-admin-2.css" rel="stylesheet" type="text/css">
+
+</head>
+<body class="bg-gradient-primary">
+<form action="userProfile" class="user-profile" enctype="multipart/form-data" method="post">
+
+
+    <div class="modal" id="modal" role="dialog" tabindex="-1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Image upload error</h5>
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Please choose an image with a valid format.</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal" type="button">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal1" role="dialog" tabindex="-1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="modal1-title" class="modal-title">Charge Status</h5>
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="modal1-message">Check Status</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal" type="button">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card  o-hidden border-0 shadow-lg my-3">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <!--                <div class="my-5  col-lg-4 d-lg-block bg-register-image"></div>-->
+                    <div class="col-sm-4 text-center">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-3">Upload your image</h1>
+                            </div>
+                            <!--style="border-radius: 100px;width:11rem;height:12rem;object-fit: fill;"-->
+                            <img class="rounded-circle" id="UserImage"
+                                 onerror="imageLoadingErrorMessage(event)"
+                                 src="images/users"
+                                 style="width:11rem;height:12rem;"/>
+                            <a class="text-light mt-3 btn btn-primary "
+                               onclick="$('#HTMLFileChooser').trigger('click')">
+                                Upload
+                            </a>
+                            <input name="image_name" accept="image/*" class="d-none"
+                                   id="HTMLFileChooser" onchange="fileInputOnChange()" type="file" value="Upload"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-8 text-center">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Update your Information!</h1>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <input class="form-control form-control-user" id="FirstName" name="FirstName"
+                                           pattern="[a-zA-Z]*"
+                                           placeholder="First Name" required="required"
+                                           title="Please dont enter any numbers" type="text">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input class="form-control form-control-user" id="LastName" name="LastName"
+                                           pattern="[a-zA-Z]*"
+                                           placeholder="Last Name" required="required"
+                                           title="Please dont enter any numbers" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+
+                                <div class="col-sm-8">
+                                    <input class="form-control form-control-user" id="Email" name="Email"
+                                           placeholder="Email"
+                                           required="required" type="email">
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <input class="form-control form-control-user" id="BirthDate" name="BirthDate"
+                                           onblur="(this.type='text')" onfocus="(this.type='date')"
+                                           placeholder="Birth date" required="required"
+                                           type="text">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <input class="form-control form-control-user" disabled id="User_limit"
+                                           name="User_limit" placeholder="Your Limit" required="required" type="text">
+                                </div>
+                            </div>
+                            <input class="btn btn-primary btn-user btn-block" type="submit"
+                                   value="Save Changes"/>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+</form>
+
+<form class="user-credit">
+    <div class="container">
+        <div class="card  o-hidden border-0 shadow-lg my-3">
+            <div class="card-body p-0">
+                <div class="col-sm-8 text-center">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4">Charge Your Limit!</h1>
+                        </div>
+                        <div class="form-group row">
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <input class="form-control form-control-user" id="creditlimit" name="creditlimit"
+                                           placeholder="Credit Limit" required="required" type="text">
+                                </div>
+                            </div>
+                            <input class="btn btn-primary btn-user btn-block" id="ceditBtn" type="button"
+                                   value="Charge Limit"/>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script src="views/js/libs/jquery-3.4.1.min.js"></script>
+<script src="views/js/libs/bootstrap.min.js"></script>
+<script src="views/js/libs/custom/jquery.easing.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="views/js/libs/custom/sb-admin-2.js"></script>
+<script src="views/js/update.js"></script>
+</body>
+</html>

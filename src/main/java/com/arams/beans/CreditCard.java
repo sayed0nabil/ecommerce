@@ -34,7 +34,7 @@ public class CreditCard  implements java.io.Serializable {
      @Id @GeneratedValue(strategy=IDENTITY)
 
     
-    @Column(name="code", unique=true, nullable=false)
+    @Column(name="`code`", unique=true, nullable=false)
     public Integer getCode() {
         return this.code;
     }
@@ -44,7 +44,7 @@ public class CreditCard  implements java.io.Serializable {
     }
 
     
-    @Column(name="limit", nullable=false)
+    @Column(name="`limit`", nullable=false)
     public int getLimit() {
         return this.limit;
     }
@@ -54,7 +54,7 @@ public class CreditCard  implements java.io.Serializable {
     }
 
     
-    @Column(name="used", nullable=false)
+    @Column(name="`used`", nullable=false)
     public byte getUsed() {
         return this.used;
     }
