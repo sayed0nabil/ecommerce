@@ -25,17 +25,12 @@ public class LoginServlet extends HttpServlet {
         PrintWriter out = res.getWriter();
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        System.out.println(email + " , " + password);
         User user = UserDao.getUserByEmail(email);
-        System.out.println("username : " + user.getFirstName() + " , pass : " + user.getPassword());
-        if (user != null) {
-            boolean isMatched = user.getPassword().equals(password);
-            if (isMatched) {
+        if (user != null && user.getPassword().equals(password)) {
                 req.getSession(true).setAttribute("mine", user);
                 out.println("{}");
-            } else {
-                out.println("{\"error\":\"check email or password\"}");
-            }
+        }else {
+            out.println("{\"error\":\"check email or password\"}");
         }
     }
 }

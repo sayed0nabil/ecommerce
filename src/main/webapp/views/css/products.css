@@ -1,0 +1,58 @@
+
+
+
+
+.category-header{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-style: italic;
+}
+.card{
+    transition: all ease-in-out 0.3s;
+}
+
+
+.product-image{
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+.product-image:hover > div{
+    animation-name: moving-vertical;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-in-out;
+}
+.product-image:hover > button{
+    animation-name: moving-horizontal;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-in-out;
+}
+.product-cover{
+    background: rgba(0, 0, 0, .5);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: -100%;
+}
+
+.inner-view-details{
+    position: absolute;
+    top: -38px;
+    left: 50%;
+    margin-left: -56px;
+
+}
+
+@keyframes moving-vertical {
+    to { left: 0 }
+}
+
+@keyframes moving-horizontal {
+    to{
+        top: 50%;
+        margin-top: -19px;
+    }
+}

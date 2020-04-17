@@ -27,7 +27,6 @@ CREATE TABLE IF NOT EXISTS `ecommerce`.`user` (
   `password` VARCHAR(45) NOT NULL,
   `birth_date` DATE NULL,
   `admin` TINYINT NOT NULL,
-  `image_name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)
 ENGINE = InnoDB;
@@ -70,7 +69,6 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `ecommerce`.`product_image` (
   `product_id` INT NOT NULL,
   `url` VARCHAR(45) NOT NULL,
-  `quantity` INT NOT NULL,
   PRIMARY KEY (`product_id`, `url`),
   CONSTRAINT `product_id_image_cons`
     FOREIGN KEY (`product_id`)

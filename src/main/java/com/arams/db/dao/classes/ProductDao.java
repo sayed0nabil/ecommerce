@@ -6,9 +6,11 @@ import com.arams.beans.ProductImage;
 import com.arams.db.connection.HibernateConnector;
 import com.arams.db.dao.interfaces.IProductDao;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -41,7 +43,8 @@ public class ProductDao {
 
     public static Product deleteProduct(int productId) {
         Session session = HibernateConnector.getInstance().getSession();
-        Product product = session.load(Product.class, productId);
+        Product product = session.get(Product.class, productId);
+        if(product == null) return null;
         session.beginTransaction();
         session.delete(product);
         session.getTransaction().commit();
@@ -55,6 +58,18 @@ public class ProductDao {
         CriteriaQuery<Product> criteriaQuery = productCriteria.createQuery(Product.class);
         criteriaQuery.from(Product.class);
         List<Product> products = session.createQuery(criteriaQuery).getResultList();
+        return products;
+    }
+
+    public static List<Product> searchProductByLimit(String keyword, boolean limit){
+        Session session = HibernateConnector.getInstance().getSession();
+        CriteriaBuilder productCriteria = session.getCriteriaBuilder();
+        CriteriaQuery<Product> criteriaQuery = productCriteria.createQuery(Product.class);
+        Root<Product> root = criteriaQuery.from(Product.class);
+        criteriaQuery.where(productCriteria.like(root.get("name"), "%" + keyword +"%"));
+        Query<Product> query = session.createQuery(criteriaQuery);
+        if(limit) query = query.setMaxResults(10);
+        List<Product> products = query.getResultList();
         return products;
     }
 }
