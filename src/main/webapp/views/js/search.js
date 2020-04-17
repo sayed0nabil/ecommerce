@@ -6,7 +6,9 @@ $(function(){
         const keyword = $(this).val().toLowerCase();
         search(keyword);
     }).on("blur", function () {
-        $("#myList").empty();
+        setTimeout(function () {
+            $("#myList").empty();
+        }, 100)
     }).on("focus", function () {
         const keyword = $(this).val().toLowerCase();
         search(keyword);
@@ -19,7 +21,7 @@ $(function(){
                 console.log(data);
                 const result = JSON.parse(data);
                 for(const item of result){
-                    const link = $("<a></a>").attr("href", "http://localhost:9090/ecommerce_war/search?keyword=" + keyword).text(item.name);
+                    const link = $("<a></a>").attr("href", "http://localhost:9090/ecommerce_war/productprofile?productId=" + item.id).text(item.name);
                     const li = $("<li></li>").addClass("list-group-item").append(link);
                     $("#myList").append(li);
                 }

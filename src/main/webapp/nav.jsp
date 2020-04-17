@@ -24,6 +24,7 @@
                         <i class="fas fa-search"></i>
                     </button>
                     <ul class="search-result list-group" id="myList" style="position: absolute; top: 37px; z-index: 999; width: 100%;">
+                        <li class="list-group-item">Hi</li>
                     </ul>
                 </form>
                 <c:choose>
