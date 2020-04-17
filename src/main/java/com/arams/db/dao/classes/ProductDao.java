@@ -35,7 +35,7 @@ public class ProductDao {
     public static Product updateProduct(Product product) {
         Session session = HibernateConnector.getInstance().getSession();
         session.beginTransaction();
-        session.update(product);
+        session.merge(product);
         session.getTransaction().commit();
         session.close();
         return product;
