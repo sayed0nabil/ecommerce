@@ -35,7 +35,6 @@ public class User implements java.io.Serializable {
 
     private Integer id;
     private int creditLimit;
-    private String imageName;
     private String firstName;
     private String lastName;
     private String email;
@@ -52,7 +51,6 @@ public class User implements java.io.Serializable {
 
 
     public User(int creditLimit, String imageName, String firstName, String lastName, String email, String password, byte admin) {
-        this.imageName = imageName;
         this.creditLimit = creditLimit;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -62,7 +60,6 @@ public class User implements java.io.Serializable {
     }
 
     public User(int creditLimit, String imageName, String firstName, String lastName, String email, String password, Date birthDate, byte admin, Set<UserProductCart> userProductCarts) {
-        this.imageName = imageName;
         this.creditLimit = creditLimit;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -124,15 +121,6 @@ public class User implements java.io.Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    @Column(name = "image_name", unique = false, nullable = true, length = 45)
-    public String getImageName() {
-        return imageName;
-    }
-
-    public void setImageName(String imageName) {
-        this.imageName = imageName;
     }
 
     @Column(name = "password", nullable = false, length = 45)

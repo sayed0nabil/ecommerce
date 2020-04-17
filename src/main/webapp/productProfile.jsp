@@ -67,7 +67,7 @@
         <div class="row">
             <div class="col-md-4 col-sm-12">
 
-                <img src="http://localhost:8989/${pageContext.request.contextPath}/productImages?image=${primaryImage.id.url}"
+                <img src="${pageContext.request.contextPath}/productImages?productID=${requestScope.product.id}&imageNumber=1"
                      class="productPrimaryImage" id="chosenImage">
             </div>
             <div class="col-md-8 col-sm-12 border-left-primary">
@@ -79,9 +79,8 @@
 
                     <p>${requestScope.product.description}</p>
                     <div class=" productImages">
-                        <c:forEach items="${requestScope.product.productImages}" var="iterator">
-
-                            <img src="http://localhost:8989/${pageContext.request.contextPath}/productImages?image=${iterator.id.url}"
+                        <c:forEach begin="1" end="3" var="iterator">
+                            <img src="${pageContext.request.contextPath}/productImages?productID=${requestScope.product.id}&imageNumber=${iterator}"
                                  class="productImage" onclick="changeImage(this)">
 
                         </c:forEach>

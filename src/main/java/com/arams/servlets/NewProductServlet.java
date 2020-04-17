@@ -17,12 +17,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.file.Paths;
 import java.util.List;
 
 
-@WebServlet(name = "NewProductServlet", urlPatterns = {"/newProduct"})
+@WebServlet(name = "NewProductServlet", urlPatterns = {"/admin/newproduct"})
 @MultipartConfig
 public class NewProductServlet extends HttpServlet {
     @Override
@@ -30,18 +32,40 @@ public class NewProductServlet extends HttpServlet {
             throws ServletException, IOException {
         List<Category> categoryList = CategoryDao.getAllCategories();
         request.setAttribute("categories", categoryList);
-        System.out.println(categoryList);
         RequestDispatcher rd
-                = request.getRequestDispatcher("newproduct.jsp");
-        rd.forward(request, response);
+                = request.getRequestDispatcher("../newproduct.jsp");
+        rd.include(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        ProductDao.addProduct(getAddedProduct(request));
-        response.getWriter().print("done");
+        Product newProduct = getAddedProduct(request);
+        ProductDao.addProduct(newProduct);
+        addImages(request, newProduct);
+        ProductDao.updateProduct(newProduct);
+        RequestDispatcher rd
+                = request.getRequestDispatcher("../newproduct.jsp");
+        rd.include(request, response);
+        response.sendRedirect("../main");
+    }
+
+    private void addImages(HttpServletRequest request, Product product)
+            throws IOException, ServletException {
+
+        Part filePart = request.getPart("productImage");
+        if (filePart.getSize() != 0)
+            setUploadedImage(product, filePart, 1);
+
+        Part filePart2 = request.getPart("productImage2");
+        if (filePart2.getSize() != 0)
+            setUploadedImage(product, filePart2, 2);
+
+        Part filePart3 = request.getPart("productImage3");
+        if (filePart3.getSize() != 0)
+            setUploadedImage(product, filePart3, 3);
+
     }
 
     private Product getAddedProduct(HttpServletRequest request) throws IOException, ServletException {
@@ -49,38 +73,29 @@ public class NewProductServlet extends HttpServlet {
         int productPrice = Integer.parseInt(request.getParameter("price"));
         int productQuantity = Integer.parseInt(request.getParameter("quantity"));
         String description = request.getParameter("description");
-        int category = Integer.parseInt(request.getParameter("category"));
-        Category productCategory = new Category();
-        productCategory.setId(category);
+//        int category = Integer.parseInt(request.getParameter("category"));
+        Category productCategory = new Category(1, "Electronics");
         Product product = new Product(productCategory, productName, productPrice, productQuantity);
         product.setDescription(description);
         // get uploaded images
 
-        Part filePart = request.getPart("productImage");
-
-        setUploadedImage(product, filePart);
-        Part filePart2 = request.getPart("productImage2");
-
-        setUploadedImage(product, filePart2);
-        Part filePart3 = request.getPart("productImage3");
-
-        setUploadedImage(product, filePart3);
         return product;
     }
 
-    private void setUploadedImage(Product product, Part filePart) throws IOException {
+    private void setUploadedImage(Product product, Part filePart, int imageNumber) throws IOException {
         ServletContext sc = getServletConfig().getServletContext();
-        String path = System.getProperty("user.home")+sc.getInitParameter("product-image-directory");
-                //sc.getRealPath("..\\product");
+//        System.getProperty("user.home")+
+        String path = sc.getInitParameter("product-image-directory");
+        //sc.getRealPath("..\\product");
         String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-        String fileNameOnServer = product.getName()+ fileName;
+        String fileNameOnServer = product.getId() + "-" + imageNumber;
         File savedFile = new File(path);
         if (!savedFile.exists()) {
             savedFile.mkdir();
         }
-        path = savedFile.getAbsolutePath();
-        System.out.println(path + "\\" + fileNameOnServer);
-        filePart.write(path + "\\" + fileNameOnServer);
+        FileOutputStream outStream = new FileOutputStream(new File(path + fileNameOnServer));
+
+        outStream.write(filePart.getInputStream().readAllBytes());
         ProductImage productImage = new ProductImage();
         ProductImageId productImageId = new ProductImageId();
         productImageId.setUrl(product.getName() + fileName);

@@ -15,16 +15,16 @@
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
     <meta content="" name="description">
     <meta content="" name="author">
-    <script src="views/js/libs/jquery-3.4.1.min.js"></script>
+    <script src="../views/js/libs/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
 
-    <script src="views/js/newProduct.js"></script>
+    <script src="../views/js/newProduct.js"></script>
     <title>add new product </title>
 
 
-    <link href="views/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../views/css/all.min.css" rel="stylesheet" type="text/css">
 
-    <link href="views/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../views/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -60,7 +60,7 @@
                         <!-- Nested Row within Card Body -->
                         <div class="row">
                             <div id="productImgDiv" class="col-lg-6 d-none d-lg-block bg-login-image">
-                                <img id="productImage" src="images/lock1.png">
+                                <img id="productImage" src="../images/lock1.png">
 
                             </div>
                             <div class="col-lg-6">
@@ -71,7 +71,7 @@
                                     <div id="error" class="alert alert-danger d-none" role="alert">
                                        please fill all fields and set different images!
                                     </div>
-                                    <form class="user" method="post" action="newProduct" onsubmit="return validateForm()" enctype="multipart/form-data">
+                                    <form class="user" method="post" action="newproduct" onsubmit="return validateForm()" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <input class="form-control " multiple
                                                    id="name" name="name" placeholder="product name" type="text" required
@@ -147,14 +147,14 @@
     </div>
 </section>
 <!-- Bootstrap core JavaScript-->
-<script src="views/js/libs/jquery.min.js"></script>
-<script src="views/js/libs/bootstrap.bundle.min.js"></script>
+<script src="../views/js/libs/jquery.min.js"></script>
+<script src="../views/js/libs/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="views/js/libs/jquery.easing.min.js"></script>
+<script src="../views/js/libs/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="views/js/libs/sb-admin-2.min.js"></script>
+<script src="../views/js/libs/sb-admin-2.min.js"></script>
 
 </body>
 </html>

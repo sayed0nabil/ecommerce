@@ -6,10 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 
 @WebServlet(name = "ProductImageServlet", urlPatterns = {"/productImages"})
 
@@ -17,23 +14,33 @@ public class ProductImageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ServletContext sc = getServletContext();
-        String imageUrl = request.getParameter("image");
-        String path = System.getProperty("user.home")+sc.getInitParameter("product-image-directory");
-        FileInputStream fileInputStream
-                = new FileInputStream(path+ "\\" + imageUrl);
 
-        OutputStream os = response.getOutputStream();
-        if (fileInputStream == null) {
-            response.setContentType("text/plain");
-            os.write("Failed to send image".getBytes());
+        String imageNumber = request.getParameter("imageNumber");
+        String productID = request.getParameter("productID");
+
+        String usersImageDirectory
+                = this.getServletConfig().getServletContext()
+                .getInitParameter("product-image-directory");
+
+        System.out.println(usersImageDirectory
+                + productID + "-" + imageNumber);
+
+        File imageFile = new File(usersImageDirectory
+                + productID + "-" + imageNumber);
+
+        if (imageFile.exists()) {
+
+            response.getOutputStream().write(new FileInputStream(imageFile).readAllBytes());
+
         } else {
-            byte[] buffer = new byte[1024];
-            int bytesRead;
-            response.setContentType("image/png");
-            while ((bytesRead = fileInputStream.read(buffer)) != -1) {
-                os.write(buffer, 0, bytesRead);
-            }
+
+            new File("user").mkdir();
+            response.getOutputStream().write(new FileInputStream(new File(getServletContext()
+                    .getRealPath("views/images/product.png")))
+                    .readAllBytes());
+
         }
+
+
     }
 }

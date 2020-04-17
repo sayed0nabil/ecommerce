@@ -23,7 +23,6 @@ CREATE TABLE IF NOT EXISTS `ecommerce`.`user` (
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
-  `image_name` VARCHAR(45),
   `password` VARCHAR(45) NOT NULL,
   `birth_date` DATE NULL,
   `admin` TINYINT NOT NULL,
