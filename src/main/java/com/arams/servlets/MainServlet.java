@@ -17,8 +17,6 @@ public class MainServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        List<Category> categories = new CategoryDao().getAllCategories();
-        req.setAttribute("categories", categories);
         req.getRequestDispatcher("main.jsp").include(req, res);
     }
 }

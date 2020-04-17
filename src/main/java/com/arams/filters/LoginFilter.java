@@ -5,12 +5,16 @@ package com.arams.filters;
  * and open the template in the editor.
  */
 
+import com.arams.beans.Category;
+import com.arams.db.dao.classes.CategoryDao;
+
 import javax.servlet.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 public class LoginFilter implements Filter {
 
@@ -40,6 +44,8 @@ public class LoginFilter implements Filter {
                 }
 
             } else {
+                List<Category> categories = new CategoryDao().getAllCategories();
+                request.setAttribute("categories", categories);
                 chain.doFilter(request, response);
             }
     }
