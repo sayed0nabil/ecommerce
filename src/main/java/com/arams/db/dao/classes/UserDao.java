@@ -53,15 +53,5 @@ public class UserDao {
 
     }
 
-    public static void clearUserCart(User user) {
-        Session session = HibernateConnector.getInstance().getSession();
-        session.beginTransaction();
-        Set<UserProductCart> userProductCarts = user.getUserProductCarts();
-        for (UserProductCart cartProduct : userProductCarts) {
-            session.remove(cartProduct);
-            cartProduct.setId(null);
-        }
-        session.getTransaction().commit();
-    }
 
 }

@@ -5,6 +5,7 @@ import com.arams.beans.User;
 import com.arams.beans.UserProductCart;
 import com.arams.db.dao.classes.ProductDao;
 import com.arams.db.dao.classes.UserDao;
+import com.arams.db.dao.classes.UserProductCartDao;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -40,7 +41,7 @@ public class CartSubmission extends HttpServlet {
             }
             userLimit = userLimit - cartPrice;
             currentUser.setCreditLimit(userLimit);
-            UserDao.clearUserCart(currentUser);
+            UserProductCartDao.clearUserCart(currentUser);
             currentUser.getUserProductCarts().clear();
             UserDao.updateUser(currentUser);
             //System.out.println("submitted");
