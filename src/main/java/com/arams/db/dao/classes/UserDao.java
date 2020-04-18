@@ -51,16 +51,16 @@ public class UserDao {
         session.merge(user);
         session.getTransaction().commit();
 
-
     }
-    public static void clearUserCart(User user){
+
+    public static void clearUserCart(User user) {
         Session session = HibernateConnector.getInstance().getSession();
         session.beginTransaction();
         Set<UserProductCart> userProductCarts = user.getUserProductCarts();
         for (UserProductCart cartProduct : userProductCarts) {
-            session.delete(cartProduct);
+            session.remove(cartProduct);
+            cartProduct.setId(null);
         }
-        userProductCarts.clear();
         session.getTransaction().commit();
     }
 

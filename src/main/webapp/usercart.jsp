@@ -23,13 +23,46 @@
     <link href="../views/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="../views/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="../views/css/usercart.css" rel="stylesheet" type="text/css">
+    <script>
+        var req = null;
+
+        function submitForm() {
+            if (window.XMLHttpRequest)
+                req = new XMLHttpRequest();
+            else if (window.ActiveXObject)
+                req = new ActiveXObject(Microsoft.XMLHTTP);
+            req.onreadystatechange = handleReq;
+            req.open("POST", "?t = " + new Date().getTime(), true);
+            req.send(null);
+        }
+
+        function handleReq() {
+            if (req.readyState == 4 && req.status == 200) {
+                xmlvalue = req.responseText;
+                if (xmlvalue == "successfully submitted") {
+                    $("#status").addClass("alert alert-success");
+                    setTimeout(function () {
+                        location.reload();
+                    }, 3000);
+                } else {
+                    $("#status").addClass("alert alert-danger");
+                }
+                document.getElementById("status").innerHTML = xmlvalue;
+
+            } else {
+                //document.getElementById("status").innerHTML = "no response";
+            }
+        }
+    </script>
 
 </head>
 <body>
 <jsp:include page="nav.jsp"/>
 <h1>Shopping Cart</h1><br/>
 <hr/>
+<div id="status" class="" role="alert">
 
+</div>
 <%--shopping cart--%>
 <div class="shopping-cart">
 
@@ -88,9 +121,9 @@
             <div class="totals-value" id="cart-total">90.57</div>
         </div>
     </div>
-
-    <button class="checkout">Checkout</button>
-
+    <form method="post">
+        <button class="checkout" type="button" onclick="submitForm()">Checkout</button>
+    </form>
 </div>
 
 <%--importing script lib--%>
