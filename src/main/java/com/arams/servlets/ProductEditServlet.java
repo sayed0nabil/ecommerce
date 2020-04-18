@@ -1,9 +1,8 @@
 package com.arams.servlets;
 
 import com.arams.beans.Product;
-import com.arams.beans.User;
 import com.arams.db.dao.classes.ProductDao;
-import com.arams.db.dao.classes.UserDao;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -15,7 +14,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -28,15 +26,19 @@ public class ProductEditServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-
+        int productId = Integer.parseInt(request.getParameter("productId"));
+        Product product = ProductDao.getProductById(productId);
+        ObjectMapper mapper = new ObjectMapper();
+        product.getUserProductCarts();
+        String jsonObject = mapper.writeValueAsString(product);
+        response.getWriter().write(jsonObject);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int productID = Integer.parseInt(request.getParameter("productid"));
+        int productID = Integer.parseInt(request.getParameter("productId"));
 
         FileItem[] imageFiles = new FileItem[3];
         int arrayCounter = 0;
@@ -72,16 +74,17 @@ public class ProductEditServlet extends HttpServlet {
             Product product = ProductDao.getProductById(productID);
 
             product.setName((String) request.getAttribute("name"));
-            product.setName((String) request.getAttribute("price"));
-            product.setName((String) request.getAttribute("quantity"));
-            product.setName((String) request.getAttribute("description"));
+            System.out.println("oooooooooooooooooooooooooooooooooooooooooooo" + request.getAttribute("price"));
+            product.setPrice(Integer.parseInt((String) request.getAttribute("price")));
+            product.setQuantity(Integer.parseInt((String) request.getAttribute("quantity")));
+            product.setDescription((String) request.getAttribute("description"));
 
             ProductDao.updateProduct(product);
 
             for (int i = 0; i < imageFiles.length; i++) {
-
+                System.out.println(imageFiles[i].getFieldName());
                 if (imageFiles[i].getSize() != 0) {
-
+                    System.out.println("============================================");
                     new File(productsImageDirectory).mkdirs();
                     File newFile = new File(productsImageDirectory
                             + product.getId() + "-" + (i + 1));
@@ -96,7 +99,7 @@ public class ProductEditServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        response.sendRedirect("customerProfile.html");
+        response.sendRedirect("../main");
 
     }
 }
