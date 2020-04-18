@@ -1,9 +1,9 @@
 $(document).ready(function () {
     // let productId=document.getElementById('param').getAttribute('value');
     // let p=$('#param').text();
-    let productID = $('#param')[0].innerHTML;
+    let productId = $('#param')[0].innerHTML;
 
-    $.get("admin/editproduct?" + productId, ajaxCallBack);
+    $.get("admin/editproduct?productId=" + productId, ajaxCallBack);
 
     function ajaxCallBack(responseTxt, statusTxt, xhr) {
         if (statusTxt == "success") {

@@ -27,8 +27,9 @@
 </header>
 <div id="param" class="d-none" value="${param.productId}">${param.productId}</div>
 <div class="card o-hidden border-0 shadow-lg my-5">
-    <form class="user" method="post" action="editproduct" onsubmit="" enctype="multipart/form-data">
+    <form class="user" method="post" action="admin/editproduct" onsubmit="" enctype="multipart/form-data">
 
+        <input name="productId" class="d-none" type="text" value="${param.productId}"/>
         <div class="modal" id="modal" role="dialog" tabindex="-1">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -48,7 +49,6 @@
             </div>
         </div>
 
-
         <div class="row justify-content-center">
             <div class="col-lg-3 mb-2">
                 <div class="card bg-primary text-white shadow">
@@ -64,7 +64,7 @@
                                    value="Upload"/>
                             <div class="product-cover"></div>
                             <button class="btn btn-primary inner-view-details"
-                                    onclick="$('#HTMLFileChooser1').trigger('click')">Upload
+                                    onclick="event.preventDefault();$('#HTMLFileChooser1').trigger('click')">Upload
                             </button>
                         </div>
                     </div>
@@ -84,12 +84,13 @@
                                    value="Upload"/>
                             <div class="product-cover"></div>
                             <button class="btn btn-primary inner-view-details"
-                                    onclick="$('#HTMLFileChooser2').trigger('click')">Upload
+                                    onclick="event.preventDefault();$('#HTMLFileChooser2').trigger('click')">Upload
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="col-lg-3 mb-2">
                 <div class="card bg-primary text-white shadow">
                     <div class="card-body">
@@ -104,7 +105,7 @@
                                    value="Upload"/>
                             <div class="product-cover"></div>
                             <button class="btn btn-primary inner-view-details"
-                                    onclick="$('#HTMLFileChooser3').trigger('click')">Upload
+                                    onclick="event.preventDefault();$('#HTMLFileChooser3').trigger('click')">Upload
                             </button>
                         </div>
                     </div>
@@ -124,20 +125,20 @@
                                onchange="validateName()">
                     </div>
                     <div class="form-group">
-                        <input class="form-control " multiple
-                               id="price" name="price" placeholder="price" type="number" required
+                        <input class="form-control "
+                               id="price" name="price" placeholder="price" type="text" required
                                onchange="validatePrice()">
                     </div>
                     <div class="form-group">
                         <input class="form-control "
-                               id="quantity" name="quantity" placeholder="quantity" type="number"
+                               id="quantity" name="quantity" placeholder="quantity" type="text"
                                required onchange="validateQuantity()">
                     </div>
 
                     <hr>
                     <div class="form-group">
 
-                                        <textarea class="form-control " id="Textarea" rows="3"
+                                        <textarea class="form-control " id="description" rows="3"
                                                   placeholder="description.." style="margin-top: 8px"
                                                   name="description"></textarea>
                     </div>

@@ -1,10 +1,8 @@
 package com.arams.db.dao.classes;
 
-import com.arams.beans.Category;
 import com.arams.beans.Product;
 import com.arams.beans.ProductImage;
 import com.arams.db.connection.HibernateConnector;
-import com.arams.db.dao.interfaces.IProductDao;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
@@ -28,7 +26,6 @@ public class ProductDao {
             session.persist(productImage);
         }
         session.getTransaction().commit();
-        session.close();
         return product;
     }
 
@@ -37,7 +34,6 @@ public class ProductDao {
         session.beginTransaction();
         session.merge(product);
         session.getTransaction().commit();
-        session.close();
         return product;
     }
 
@@ -48,7 +44,6 @@ public class ProductDao {
         session.beginTransaction();
         session.delete(product);
         session.getTransaction().commit();
-        session.close();
         return product;
     }
 
@@ -69,7 +64,7 @@ public class ProductDao {
         query.select(root).where(builder.equal(root.get("id"), id));
         Query<Product> q=session.createQuery(query);
         Product product =q.getSingleResult();
-        session.close();
+//        session.close();
         return product;
     }
 
