@@ -5,7 +5,7 @@ import com.arams.beans.User;
 import com.arams.beans.UserProductCart;
 import com.arams.beans.UserProductCartId;
 import com.arams.db.dao.classes.ProductDao;
-import com.arams.db.dao.classes.UserDao;
+import com.arams.db.dao.classes.UserProductCartDao;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -37,7 +37,6 @@ public class ProductProfileServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         User loggedIn = (User) request.getSession().getAttribute("mine");
-
         String productId = request.getParameter("productId");
         String Quantity = request.getParameter("quantity");
         if (productId != null) {
@@ -50,11 +49,9 @@ public class ProductProfileServlet extends HttpServlet {
             UserProductCartId userProductCartId = new UserProductCartId(userId, productID);
             UserProductCart userProductCart = new UserProductCart(userProductCartId, product, loggedIn, qty);
             Set<UserProductCart> userProductCartSet = loggedIn.getUserProductCarts();
-            if (userProductCartSet != null) {
-                userProductCartSet.add(userProductCart);
-                UserDao.updateUser(loggedIn);
-            }
-
+            userProductCartSet.add(userProductCart);
+            UserProductCartDao.updateProductToCart(userProductCart);
+            response.sendRedirect("./main");
         }
     }
 
