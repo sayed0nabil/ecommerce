@@ -138,7 +138,7 @@
                     <hr>
                     <div class="form-group">
 
-                                        <textarea class="form-control " id="Textarea" rows="3"
+                                        <textarea class="form-control " id="description" rows="3"
                                                   placeholder="description.." style="margin-top: 8px"
                                                   name="description"></textarea>
                     </div>
