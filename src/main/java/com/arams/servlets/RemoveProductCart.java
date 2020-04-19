@@ -34,6 +34,6 @@ public class RemoveProductCart extends HttpServlet {
                 status = 500;
             }
         }
-        res.getWriter().println("{\"status\": " + status +"}");
+        res.getWriter().println(status == 200 ? "success": "fail");
     }
 }

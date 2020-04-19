@@ -26,8 +26,8 @@
                 <a class="main-link navbar-brand mr-5 text-warning" href="main">
                     Shopping
                 </a>
-                <form class="form-inline w-75" style="position: relative;">
-                    <input type="text" class="form-control mb-2 w-75" id="searchInput" placeholder="What You Looking For ?">
+                <form class="form-inline w-75" style="position: relative;"action="searchproducts">
+                    <input type="text" class="form-control mb-2 w-75" id="searchInput" placeholder="What You Looking For ?" name="keyword">
                     <button type="submit" class="btn btn-info mb-2" style="width: 60px; border-radius: 0">
                         <i class="fas fa-search"></i>
                     </button>
