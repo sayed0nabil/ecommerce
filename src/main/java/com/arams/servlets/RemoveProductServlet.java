@@ -16,10 +16,9 @@ public class RemoveProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String stringProductId = req.getParameter("productid");
-        if(stringProductId == null){
+        int status = 500;
+        if(stringProductId != null){
 
-        }else{
-            int status = 500;
             try{
                 int productId = Integer.parseInt(stringProductId);
                 Product deletedProduct = ProductDao.deleteProduct(productId);
@@ -32,7 +31,7 @@ public class RemoveProductServlet extends HttpServlet {
             }catch(NumberFormatException ex){
                 status = 500;
             }
-            req.getRequestDispatcher("../responsemessage.jsp?status=" + status).include(req, res);
         }
+        req.getRequestDispatcher("../responsemessage.jsp?status=" + status).include(req, res);
     }
 }
