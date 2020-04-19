@@ -23,7 +23,7 @@
     animation-fill-mode: both;
     animation-timing-function: ease-in-out;
 }
-.product-image:hover > button{
+.product-image:hover > .inner-view-details{
     animation-name: moving-horizontal;
     animation-duration: 0.5s;
     animation-fill-mode: both;

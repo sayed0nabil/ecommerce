@@ -9,7 +9,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="stylesheet" href="./views/css/libs/bootstrap.min.css" />
+    <script src="./views/js/libs/jquery-3.4.1.min.js"></script>
+    <script src="./views/js/libs/bootstrap.min.js"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="views/css/libs/all.min.css" />
+    <script src="./views/js/libs/all.min.js"></script>
     <link rel="stylesheet" href="./views/css/nav.css"/>
+
 </head>
 <body>
     <div>
@@ -18,8 +26,8 @@
                 <a class="main-link navbar-brand mr-5 text-warning" href="main">
                     Shopping
                 </a>
-                <form class="form-inline w-75" style="position: relative;">
-                    <input type="text" class="form-control mb-2 w-75" id="searchInput" placeholder="What You Looking For ?">
+                <form class="form-inline w-75" style="position: relative;"action="searchproducts">
+                    <input type="text" class="form-control mb-2 w-75" id="searchInput" placeholder="What You Looking For ?" name="keyword">
                     <button type="submit" class="btn btn-info mb-2" style="width: 60px; border-radius: 0">
                         <i class="fas fa-search"></i>
                     </button>
@@ -62,7 +70,7 @@
                     </li>
                     <c:forEach items="${requestScope.categories}" var="category">
                         <li class="nav-item active">
-                            <a class="nav-link" href="<c:out value="category/${category.getName()}" />"><c:out value = "${category.getName()}"/> <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="<c:out value="category?categoryname=${category.getName()}" />"><c:out value = "${category.getName()}"/> <span class="sr-only">(current)</span></a>
                         </li>
                     </c:forEach>
                 </ul>
@@ -72,3 +80,4 @@
     <script src="./views/js/search.js"></script>
 </body>
 </html>
+

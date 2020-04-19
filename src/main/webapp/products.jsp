@@ -39,7 +39,7 @@
                         <div class="product-image">
                             <img class="card-img-top" src="./views/images/laptop.jpg" alt="Card image cap">
                             <div class="product-cover"></div>
-                            <button class="btn btn-primary inner-view-details">View Details</button>
+                            <a class="btn btn-primary inner-view-details" href="http://localhost:9090/ecommerce_war/productprofile?productId=${product.getId()}">View Details</a>
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
