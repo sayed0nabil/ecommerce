@@ -9,7 +9,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="stylesheet" href="./views/css/libs/bootstrap.min.css" />
+    <script src="./views/js/libs/jquery-3.4.1.min.js"></script>
+    <script src="./views/js/libs/bootstrap.min.js"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="views/css/libs/all.min.css" />
+    <script src="./views/js/libs/all.min.js"></script>
     <link rel="stylesheet" href="./views/css/nav.css"/>
+
 </head>
 <body>
     <div>
@@ -72,3 +80,4 @@
     <script src="./views/js/search.js"></script>
 </body>
 </html>
+
