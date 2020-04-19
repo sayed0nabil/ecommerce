@@ -8,10 +8,12 @@ import org.hibernate.query.Query;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ProductDao {
 
@@ -80,6 +82,18 @@ public class ProductDao {
         Query<Product> query = session.createQuery(criteriaQuery);
         if(limit) query = query.setMaxResults(10);
         List<Product> products = query.getResultList();
+        return products;
+    }
+
+    public static List<Product> getProductsByCategory(String categoryName) {
+        Session session = HibernateConnector.getInstance().getSession();
+//        CriteriaBuilder builder = session.getCriteriaBuilder();
+        session.beginTransaction();
+        String select = "select p FROM Product p INNER JOIN p.category";
+        Query query = session.createQuery(select);
+        List<Product> products = query.getResultList();
+        products = products.stream().filter(product -> product.getCategory().getName().equals(categoryName)).collect(Collectors.toList());
+        session.getTransaction().commit();
         return products;
     }
 }

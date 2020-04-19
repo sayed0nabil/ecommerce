@@ -62,7 +62,7 @@
                     </li>
                     <c:forEach items="${requestScope.categories}" var="category">
                         <li class="nav-item active">
-                            <a class="nav-link" href="<c:out value="category/${category.getName()}" />"><c:out value = "${category.getName()}"/> <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="<c:out value="category?categoryname=${category.getName()}" />"><c:out value = "${category.getName()}"/> <span class="sr-only">(current)</span></a>
                         </li>
                     </c:forEach>
                 </ul>

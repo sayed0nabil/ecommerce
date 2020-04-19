@@ -44,8 +44,10 @@ public class LoginFilter implements Filter {
                 }
 
             } else {
-                List<Category> categories = new CategoryDao().getAllCategories();
-                request.setAttribute("categories", categories);
+                if(request.getAttribute("categories") == null){
+                    List<Category> categories = new CategoryDao().getAllCategories();
+                    request.setAttribute("categories", categories);
+                }
                 chain.doFilter(request, response);
             }
     }
