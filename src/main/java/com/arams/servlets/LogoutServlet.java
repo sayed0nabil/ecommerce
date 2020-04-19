@@ -17,6 +17,6 @@ public class LogoutServlet extends HttpServlet {
         if(httpSession != null){
             httpSession.removeAttribute("mine");
         }
-        res.sendRedirect("main");
+        res.sendRedirect("http://localhost:9090/ecommerce_war/main");
     }
 }

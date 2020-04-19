@@ -23,7 +23,7 @@
     <div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container col-lg-10">
-                <a class="main-link navbar-brand mr-5 text-warning" href="main">
+                <a class="main-link navbar-brand mr-5 text-warning" href="http://localhost:9090/ecommerce_war/main">
                     Shopping
                 </a>
                 <form class="form-inline w-75" style="position: relative;"action="searchproducts">
