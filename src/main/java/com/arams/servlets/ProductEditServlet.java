@@ -20,7 +20,6 @@ import java.util.List;
 
 
 @WebServlet(name = "ProductEdit", urlPatterns = {"/admin/editproduct"})
-@MultipartConfig
 public class ProductEditServlet extends HttpServlet {
 
     @Override
@@ -37,8 +36,6 @@ public class ProductEditServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        int productID = Integer.parseInt(request.getParameter("productId"));
 
         FileItem[] imageFiles = new FileItem[3];
         int arrayCounter = 0;
@@ -71,10 +68,10 @@ public class ProductEditServlet extends HttpServlet {
 
             }
 //            User user = setUserData(request);
+            int productID = Integer.parseInt((String) request.getAttribute("productId"));
             Product product = ProductDao.getProductById(productID);
 
             product.setName((String) request.getAttribute("name"));
-            System.out.println("oooooooooooooooooooooooooooooooooooooooooooo" + request.getAttribute("price"));
             product.setPrice(Integer.parseInt((String) request.getAttribute("price")));
             product.setQuantity(Integer.parseInt((String) request.getAttribute("quantity")));
             product.setDescription((String) request.getAttribute("description"));
@@ -82,9 +79,7 @@ public class ProductEditServlet extends HttpServlet {
             ProductDao.updateProduct(product);
 
             for (int i = 0; i < imageFiles.length; i++) {
-                System.out.println(imageFiles[i].getFieldName());
                 if (imageFiles[i].getSize() != 0) {
-                    System.out.println("============================================");
                     new File(productsImageDirectory).mkdirs();
                     File newFile = new File(productsImageDirectory
                             + product.getId() + "-" + (i + 1));

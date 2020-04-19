@@ -62,15 +62,20 @@
 </head>
 <body>
 
+<header>
+    <jsp:include page="nav.jsp"/>
+</header>
+
 <div class="container">
     <section class="productProfile">
         <div class="row">
-            <div class="col-md-4 col-sm-12">
+            <div class="col-md-5 col-sm-12">
 
-                <img src="${pageContext.request.contextPath}/productImages?productID=${requestScope.product.id}&imageNumber=1"
-                     class="productPrimaryImage" id="chosenImage">
+                <img style="width:23rem;height:23rem;"
+                     src="${pageContext.request.contextPath}/productImages?productID=${requestScope.product.id}&imageNumber=1"
+                     class="mt-2 ml-4 productPrimaryImage shadow-lg" id="chosenImage">
             </div>
-            <div class="col-md-8 col-sm-12 border-left-primary">
+            <div class="col-md-7 col-sm-12 border-left-primary">
                 <div class="productDetails ">
                     <h2>${requestScope.product.name}</h2>
                     <span class="productPrice"><b>${requestScope.product.price} EGP</b></span>
@@ -81,28 +86,33 @@
                     <div class=" productImages">
                         <c:forEach begin="1" end="3" var="iterator">
                             <img src="${pageContext.request.contextPath}/productImages?productID=${requestScope.product.id}&imageNumber=${iterator}"
-                                 class="productImage" onclick="changeImage(this)">
+                                 class="productImage shadow-lg" onclick="changeImage(this)">
 
                         </c:forEach>
                     </div>
 
                     <label>Qty</label>
-                    <select class="custom-select my-1 mr-sm-2">
-                        <option value="1" selected>1</option>
-                        <c:forEach var="i" begin="2" end="${requestScope.product.quantity}">
-                            <option value="2">${i}</option>
-                        </c:forEach>
+                    <form method="post" action="productprofile">
 
-                    </select>
-                    <button class="btn btn-primary ">Add to cart</button>
+                        <select name="quantity" class="custom-select my-1 mr-sm-2">
+                            <option value="1" selected>1</option>
+                            <c:forEach var="i" begin="2" end="${requestScope.product.quantity}">
+                                <option value="${i}">${i}</option>
+                            </c:forEach>
+
+                        </select>
+
+                        <input name="productId" type="hidden" value="${requestScope.product.id}"/>
+
+                        <c:if test="${!empty sessionScope.mine}">
+                            <input type="submit" name="" value="Add to cart" class="btn btn-primary "/>
+                        </c:if>
+                    </form>
                 </div>
 
             </div>
         </div>
-        <div class="row">
 
-
-        </div>
     </section>
 </div>
 </body>

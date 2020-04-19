@@ -12,7 +12,7 @@
 
     <context-param>
         <param-name>product-image-directory</param-name>
-        <param-value>../../../products/</param-value>
+        <param-value>../products/</param-value>
     </context-param>
 
     <filter>

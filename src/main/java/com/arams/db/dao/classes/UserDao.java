@@ -1,12 +1,14 @@
 package com.arams.db.dao.classes;
 
 import com.arams.beans.User;
+import com.arams.beans.UserProductCart;
 import com.arams.db.connection.HibernateConnector;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
+import java.util.Set;
 
 public class UserDao {
 
@@ -49,7 +51,7 @@ public class UserDao {
         session.merge(user);
         session.getTransaction().commit();
 
-
     }
+
 
 }

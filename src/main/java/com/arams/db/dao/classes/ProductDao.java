@@ -28,16 +28,14 @@ public class ProductDao {
             session.persist(productImage);
         }
         session.getTransaction().commit();
-//        session.close();
         return product;
     }
 
     public static Product updateProduct(Product product) {
         Session session = HibernateConnector.getInstance().getSession();
         session.beginTransaction();
-        session.update(product);
+        session.merge(product);
         session.getTransaction().commit();
-//        session.close();
         return product;
     }
 
@@ -48,7 +46,6 @@ public class ProductDao {
         session.beginTransaction();
         session.delete(product);
         session.getTransaction().commit();
-//        session.close();
         return product;
     }
 
