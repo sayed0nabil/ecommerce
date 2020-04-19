@@ -15,7 +15,7 @@
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
     <meta content="" name="description">
     <meta content="" name="author">
-    <script src="views/js/libs/jquery-3.4.1.min.js"></script>
+    <script src="../views/js/libs/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
 
 
