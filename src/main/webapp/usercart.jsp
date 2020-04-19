@@ -4,6 +4,7 @@
   Date: 4/11/2020
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -33,7 +34,8 @@
                 req = new ActiveXObject(Microsoft.XMLHTTP);
             req.onreadystatechange = handleReq;
             req.open("POST", "?t = " + new Date().getTime(), true);
-            req.send(null);
+            req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+            req.send("total=" + $("#cart-total").value);
         }
 
         function handleReq() {
@@ -55,6 +57,7 @@
         }
     </script>
 
+    <link rel="icon" href="./views/images/cart.png"/>
 </head>
 <body>
 <jsp:include page="nav.jsp"/>
@@ -90,14 +93,14 @@
             </div>
             <div class="product-price">${userCart.product.price}</div>
             <div class="product-quantity">
-                <input type="number" value="1" min="1">
+                <input type="number" value="${userCart.quantity}" min="1">
             </div>
             <div class="product-removal">
-                <button class="remove-product">
+                <button class="remove-product" id="${userCart.id}">
                     Remove
                 </button>
             </div>
-            <div class="product-line-price">${userCart.product.price}</div>
+            <div class="product-line-price">${userCart.product.price * userCart.quantity}</div>
         </div>
 
     </c:forEach>
@@ -121,9 +124,12 @@
             <div class="totals-value" id="cart-total">90.57</div>
         </div>
     </div>
-    <form method="post">
+
+
+        <form method="post">
         <button class="checkout" type="button" onclick="submitForm()">Checkout</button>
     </form>
+
 </div>
 
 <%--importing script lib--%>

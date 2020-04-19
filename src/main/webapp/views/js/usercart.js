@@ -1,10 +1,13 @@
+var request = null;
+
 $(document).ready(function () {
+
 
     /* Set rates + misc */
     var taxRate = 0.05;
     var shippingRate = 15.00;
     var fadeTime = 300;
-
+    recalculateCart();
 
     /* Assign actions */
     $('.product-quantity input').change(function () {
@@ -19,7 +22,6 @@ $(document).ready(function () {
     /* Recalculate cart */
     function recalculateCart() {
         var subtotal = 0;
-
         /* Sum up row totals */
         $('.product').each(function () {
             subtotal += parseFloat($(this).children('.product-line-price').text());
@@ -64,16 +66,52 @@ $(document).ready(function () {
         });
     }
 
-
     /* Remove item from cart */
     function removeItem(removeButton) {
-        /* Remove row from DOM and recalc cart total */
-        var productRow = $(removeButton).parent().parent();
-        productRow.slideUp(fadeTime, function () {
-            productRow.remove();
-            recalculateCart();
-        });
+        //creating ajax request to the servlet
+        removeUserCartFromDBAjaxCall(removeButton);
+
     }
 
 });
 
+$('#cart-total').on('load', function () {
+    var subtotal = 0;
+    /* Sum up row totals */
+    $('.product').each(function () {
+        subtotal += parseFloat($(this).children('.product-line-price').text());
+    });
+
+    /* Calculate totals */
+    var tax = subtotal * taxRate;
+    var shipping = (subtotal > 0 ? shippingRate : 0);
+    var total = subtotal + tax + shipping;
+    $(this).html(total);
+});
+
+
+function removeUserCartFromDBAjaxCall(removeButton) {
+    if (window.XMLHttpRequest)
+        request = new XMLHttpRequest();
+    else if (window.ActiveXObject)
+        request = new ActiveXObject(Microsoft.XMLHTTP);
+    //callback function
+    request.onreadystatechange = handleReq;
+    //hitting the servlet to delete the cart from database
+    request.open("GET", "user/removecart?cartid=" + $(removeButton).attr('id') + "&t = " + new Date().getTime(), true);
+    request.send(null);
+}
+
+//checking if the delete operation done successfully
+function handleReq(removeButton) {
+    if (req.readyState == 4 && req.status == 200) {
+        xmlvalue = req.responseText;
+        if (xmlvalue == "success") {
+            var productRow = $(removeButton).parent().parent();
+            productRow.slideUp(fadeTime, function () {
+                productRow.remove();
+                recalculateCart();
+            });
+        }
+    }
+}
