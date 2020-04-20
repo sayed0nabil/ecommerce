@@ -6,8 +6,6 @@
     <title>Edit-Product</title>
     <link rel="stylesheet" href="./views/css/products.css"/>
 
-    <!-- Custom styles for this template-->
-    <link href="${pageContext.request.contextPath}/views/css/sb-admin-2.min.css" rel="stylesheet">
     <%-- Custom script for editProduct  --%>
     <script src="${pageContext.request.contextPath}/views/js/editProduct.js"></script>
 

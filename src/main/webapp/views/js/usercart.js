@@ -98,7 +98,7 @@ function removeUserCartFromDBAjaxCall(removeButton) {
     //callback function
     request.onreadystatechange = handleReq;
     //hitting the servlet to delete the cart from database
-    request.open("GET", "user/removecart?cartid=" + $(removeButton).attr('id') + "&t = " + new Date().getTime(), true);
+    request.open("GET", "removecart?cartid=" + $(removeButton).attr('id') + "&t = " + new Date().getTime(), true);
     request.send(null);
 }
 
