@@ -94,19 +94,24 @@
                     <label>Qty</label>
                     <form method="post" action="productprofile">
 
-                        <select name="quantity" class="custom-select my-1 mr-sm-2">
-                            <option value="1" selected>1</option>
-                            <c:forEach var="i" begin="2" end="${requestScope.product.quantity}">
-                                <option value="${i}">${i}</option>
-                            </c:forEach>
 
-                        </select>
 
                         <input name="productId" type="hidden" value="${requestScope.product.id}"/>
 
-                        <c:if test="${!empty sessionScope.mine}">
-                            <input type="submit" name="" value="Add to cart" class="btn btn-primary "/>
-                        </c:if>
+                        <c:choose>
+                            <c:when test="${!empty sessionScope.mine && sessionScope.mine.admin != 1}">
+                                <select name="quantity" class="custom-select my-1 mr-sm-2">
+                                    <option value="1" selected>1</option>
+                                    <c:forEach var="i" begin="2" end="${requestScope.product.quantity}">
+                                        <option value="${i}">${i}</option>
+                                    </c:forEach>
+                                </select>
+                                <input type="submit" name="" value="Add to cart" class="btn btn-primary "/>
+                            </c:when>
+                            <c:otherwise>
+                                <p>${requestScope.product.quantity}</p>
+                            </c:otherwise>
+                        </c:choose>
                     </form>
                 </div>
 

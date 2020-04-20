@@ -8,13 +8,16 @@ $(function(){
     }).on("blur", function () {
         setTimeout(function () {
             $("#myList").empty();
-        }, 100)
+        }, 200)
     }).on("focus", function () {
         const keyword = $(this).val().toLowerCase();
         search(keyword);
     })
 
     function search(keyword) {
+        $("#myList").empty();
+        $("#myList").empty();
+        $("#myList").empty();
         $("#myList").empty();
         if(keyword.trim().length > 0){
             $.get("http://localhost:9090/ecommerce_war/search?keyword=" + keyword + "&limit=10", function (data) {

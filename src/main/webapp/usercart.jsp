@@ -15,17 +15,11 @@
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
     <meta content="" name="description">
     <meta content="" name="author">
-    <script src="../views/js/libs/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
 
 
     <title>User Cart</title>
-
-    <link href="../views/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="../views/css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="../views/css/usercart.css" rel="stylesheet" type="text/css">
-
-    <link rel="icon" href="./views/images/cart.png"/>
+    <link href="${pageContext.request.contextPath}/views/css/usercart.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <jsp:include page="nav.jsp"/>
@@ -52,8 +46,7 @@
     <c:forEach items="${requestScope.userProductCart}" var="userCart">
         <div class="product">
             <div class="product-image">
-                    <%--                <img src="${userCart.product.productImages[0]}">--%>
-                <img src="images/nike.jpg">
+                <img src="${pageContext.request.contextPath}/productImages?productID=${userCart.product.id}&imageNumber=1">
             </div>
             <div class="product-details">
                 <div class="product-title">${userCart.product.name}</div>
@@ -61,12 +54,12 @@
             </div>
             <div class="product-price">${userCart.product.price}</div>
             <div class="product-quantity">
-                <input type="number" value="${userCart.quantity}" min="1">
+                <p>${userCart.quantity}</p>
             </div>
             <div class="product-removal">
-                <button class="remove-product" id="${userCart.id}">
+                <a class="remove-product" href="${pageContext.request.contextPath}/user/removecart?productid=${userCart.product.id}&userid=${userCart.user.id}">
                     Remove
-                </button>
+                </a>
             </div>
             <div class="product-line-price">${userCart.product.price * userCart.quantity}</div>
         </div>
@@ -100,18 +93,7 @@
 
 </div>
 
-<%--importing script lib--%>
-
-<script src="../views/js/libs/jquery.min.js"></script>
-<script src="../views/js/libs/bootstrap.bundle.min.js"></script>
-
-<!-- Core plugin JavaScript-->
-<script src="../views/js/libs/jquery.easing.min.js"></script>
-
-<!-- Custom scripts for all pages-->
-<script src="../views/js/libs/sb-admin-2.min.js"></script>
-
-<script src="../views/js/usercart.js"></script>
+<script src="${pageContext.request.contextPath}/views/js/usercart.js"></script>
 
 <script>
     var req = null;

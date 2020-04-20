@@ -14,15 +14,10 @@
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
     <meta content="" name="description">
     <meta content="" name="author">
-    <script src="../views/js/libs/jquery-3.4.1.min.js"></script>
     <title>add new category </title>
 
-    <!-- Custom fonts for this template-->
-    <link href="../views/css/all.min.css" rel="stylesheet" type="text/css">
-    <!--    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">-->
-
-    <!-- Custom styles for this template-->
-    <link href="../views/css/sb-admin-2.min.css" rel="stylesheet">
+<%--    <!-- Custom styles for this template-->--%>
+<%--    <link href="${pageContext.request.contextPath}/views/css/sb-admin-2.min.css" rel="stylesheet">--%>
 
 </head>
 <body class="bg-gradient-light">
@@ -84,7 +79,8 @@
                     <%--                    <th scope="row">${category.id}</th>--%>
                 <td>${category.name}</td>
                 <td>
-                    <button class="btn btn btn-outline-danger" id="${category.id}">Remove</button>
+                    <a class="btn btn btn-outline-danger" href="${pageContext.request.contextPath}/admin/removecategory?categoryid=${category.id}"
+                    onclick="return confirm('Removing this category will remove all products binded to it \nAre You Sure To Delete It ?') ? true : false ;">Remove</a>
                 </td>
             </tr>
         </c:forEach>
@@ -92,15 +88,10 @@
     </table>
 </section>
 
-<!-- Bootstrap core JavaScript-->
-<script src="../views/js/libs/jquery.min.js"></script>
-<script src="../views/js/libs/bootstrap.bundle.min.js"></script>
 
-<!-- Core plugin JavaScript-->
-<script src="../views/js/libs/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="../views/js/libs/sb-admin-2.min.js"></script>
+<%--<script src="../views/js/libs/sb-admin-2.min.js"></script>--%>
 
 <script>
     var req = null;
