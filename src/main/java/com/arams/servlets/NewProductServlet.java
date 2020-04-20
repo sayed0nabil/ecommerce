@@ -96,11 +96,11 @@ public class NewProductServlet extends HttpServlet {
         FileOutputStream outStream = new FileOutputStream(new File(path + fileNameOnServer));
 
         outStream.write(filePart.getInputStream().readAllBytes());
-        ProductImage productImage = new ProductImage();
-        ProductImageId productImageId = new ProductImageId();
-        productImageId.setUrl(product.getName() + fileName);
-        productImage.setId(productImageId);
-        product.addImage(productImage);
+//        ProductImage productImage = new ProductImage();
+//        ProductImageId productImageId = new ProductImageId();
+//        productImageId.setUrl(product.getName() + fileName);
+//        productImage.setId(productImageId);
+//        product.addImage(productImage);
     }
 
 }
