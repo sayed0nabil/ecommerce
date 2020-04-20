@@ -2,7 +2,6 @@ package com.arams.servlets;
 
 import com.arams.beans.Category;
 import com.arams.db.dao.classes.CategoryDao;
-import com.arams.db.dao.interfaces.ICategoryDao;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/addcategory")
+@WebServlet("/admin/addcategory")
 public class AddingCategoryServlet extends HttpServlet {
 
     @Override
@@ -22,21 +21,24 @@ public class AddingCategoryServlet extends HttpServlet {
         List<Category> categoryList = categoryDao.getAllCategories();
         req.setAttribute("categories", categoryList);
         System.out.println(categoryList);
-        RequestDispatcher rd = req.getRequestDispatcher("newcategory.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("../newcategory.jsp");
         rd.forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String result = "";
         String categoryname = req.getParameter("category_name");
-        if (isPersist(categoryname)) {
-            resp.getWriter().write("this category exsist");
+        System.out.println("categoryname************" + categoryname);
+        if (categoryname != null && isPersist(categoryname)) {
+            result = "this category exsist";
+            resp.getOutputStream().print(result);
         } else {
             Category category = new Category();
             category.setName(categoryname);
             CategoryDao.addCategory(category);
-            resp.getWriter().write("this category created successfully");
-
+            result = "category created successfully";
+            resp.getOutputStream().print(result);
         }
     }
 

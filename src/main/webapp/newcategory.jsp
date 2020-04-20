@@ -14,24 +14,21 @@
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
     <meta content="" name="description">
     <meta content="" name="author">
-    <script src="views/js/libs/jquery-3.4.1.min.js"></script>
+    <script src="../views/js/libs/jquery-3.4.1.min.js"></script>
     <title>add new category </title>
 
     <!-- Custom fonts for this template-->
-    <link href="views/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../views/css/all.min.css" rel="stylesheet" type="text/css">
     <!--    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">-->
 
     <!-- Custom styles for this template-->
-    <link href="views/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../views/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
-<script>
+<body class="bg-gradient-light">
+<jsp:include page="nav.jsp"/>
 
-</script>
-
-<body class="bg-gradient-primary">
 <section>
-
     <div class="container">
         <!-- Outer Row -->
         <div class="row justify-content-center">
@@ -44,18 +41,14 @@
                                 <div class="p-4">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Add Category</h1>
-
-
-                                        <!-- <div id="error" class="alert alert-danger d-none" role="alert">
-                                             Email or Password is incorrect
-                                         </div>-->
                                     </div>
-                                    <form action="/ecommerce/addcategory" method="post"
+                                    <form method="post"
                                           class="form-inline justify-content-center user">
-                                        <input type="text" required="" name="category_name" id="category-name"
+                                        <input type="text" required="" name="category_name" id="newcategory"
                                                placeholder="Enter Catgory name"
                                                class="form-control mx-sm-3 mb-2 form-control-user">
-                                        <button type="submit" id="submitBtn"
+
+                                        <button type="button" id="submitBtn" onclick="addcategory()"
                                                 style="font-size: 1.1rem;line-height: 1.2;font-weight: 400;"
                                                 class="btn btn-primary btn-user  text-white mb-2">Add Category<img
                                                 id="loading" src="SB%20Admin%202%20-%20Login_files/loading.gif"
@@ -65,20 +58,85 @@
                             </div>
                         </div>
                     </div>
+
+                    <div id="status" class="" role="alert">
+
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+
+<section>
+    <table class="table table-hover table-light bg-gradient-light justify-content-center" id="category-table">
+        <thead>
+        <tr>
+            <th scope="col">Category Name</th>
+            <th scope="col">action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${requestScope.categories}" var="category">
+            <tr>
+                    <%--                    <th scope="row">${category.id}</th>--%>
+                <td>${category.name}</td>
+                <td>
+                    <button class="btn btn btn-outline-danger" id="${category.id}">Remove</button>
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</section>
+
 <!-- Bootstrap core JavaScript-->
-<script src="views/js/libs/jquery.min.js"></script>
-<script src="views/js/libs/bootstrap.bundle.min.js"></script>
+<script src="../views/js/libs/jquery.min.js"></script>
+<script src="../views/js/libs/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="views/js/libs/jquery.easing.min.js"></script>
+<script src="../views/js/libs/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="views/js/libs/sb-admin-2.min.js"></script>
+<script src="../views/js/libs/sb-admin-2.min.js"></script>
+
+<script>
+    var req = null;
+
+    function addcategory() {
+        var categoryName = document.getElementById('newcategory').value;
+        console.log(categoryName);
+        if (window.XMLHttpRequest)
+            req = new XMLHttpRequest();
+        else if (window.ActiveXObject)
+            req = new ActiveXObject(Microsoft.XMLHTTP);
+
+        req.open("POST", "?t=" + new Date().getTime(), true);
+        req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+        req.onreadystatechange = handleReq;
+        req.send("category_name=" + categoryName);
+    }
+
+    function handleReq() {
+        if (req.readyState == 4 && req.status == 200) {
+            xmlvalue = req.responseText;
+            if (xmlvalue == "category created successfully") {
+                $("#status").addClass("alert alert-success");
+                document.getElementById('newcategory').innerHTML = "";
+
+                location.reload();
+
+            } else {
+                $("#status").addClass("alert alert-danger");
+            }
+            document.getElementById("status").innerHTML = xmlvalue;
+        } else {
+            document.getElementById("status").innerHTML = "no response";
+        }
+    }
+</script>
 
 </body>
 </html>
