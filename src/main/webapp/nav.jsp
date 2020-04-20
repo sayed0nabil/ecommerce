@@ -9,14 +9,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <link rel="stylesheet" href="./views/css/libs/bootstrap.min.css" />
-    <script src="./views/js/libs/jquery-3.4.1.min.js"></script>
-    <script src="./views/js/libs/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/css/libs/bootstrap.min.css" />
+    <script src="${pageContext.request.contextPath}/views/js/libs/jquery-3.4.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/views/js/libs/bootstrap.min.js"></script>
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="views/css/libs/all.min.css" />
-    <script src="./views/js/libs/all.min.js"></script>
-    <link rel="stylesheet" href="./views/css/nav.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/css/libs/all.min.css" />
+    <script src="${pageContext.request.contextPath}/views/js/libs/all.min.js"></script>
+
+    <%-- Google Fonts --%>
+    <link href="https://fonts.googleapis.com/css2?family=Gotu&display=swap" rel="stylesheet">
+
+    <%-- Icon In Tab--%>
+    <link rel="icon" href="${pageContext.request.contextPath}/views/images/cart.png" />
+
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/css/nav.css"/>
 
 </head>
 <body>
@@ -52,7 +59,7 @@
                             </div>
                         </div>
                         <span class="cart ml-3">
-                            <img width="40" height="40" src="./views/images/cart.png" alt="Cart" />
+                            <img width="40" height="40" src="${pageContext.request.contextPath}/views/images/cart.png" alt="Cart" />
                         </span>
                     </c:otherwise>
                 </c:choose>
@@ -66,18 +73,18 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="products">All Categories <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/products">All Categories <span class="sr-only">(current)</span></a>
                     </li>
                     <c:forEach items="${requestScope.categories}" var="category">
                         <li class="nav-item active">
-                            <a class="nav-link" href="<c:out value="category?categoryname=${category.getName()}" />"><c:out value = "${category.getName()}"/> <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}<c:out value="/category?categoryname=${category.getName()}" />"><c:out value = "${category.getName()}"/> <span class="sr-only">(current)</span></a>
                         </li>
                     </c:forEach>
                 </ul>
             </div>
         </nav>
     </div>
-    <script src="./views/js/search.js"></script>
+    <script src="${pageContext.request.contextPath}/views/js/search.js"></script>
 </body>
 </html>
 
