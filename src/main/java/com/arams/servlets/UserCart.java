@@ -38,12 +38,13 @@ public class UserCart extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String submitResponse = CartSubmission.submitCart(req);
+        double totalPrice = Double.parseDouble(req.getParameter("total"));
+        String submitResponse = CartSubmission.submitCart(req, totalPrice);
         if (submitResponse != null)
             resp.getOutputStream().print(submitResponse);
-        else
-            resp.getOutputStream().print("cart is empty");
-
+        else {
+            resp.getOutputStream().print("no response");
+        }
     }
 
 }
