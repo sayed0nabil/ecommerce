@@ -10,8 +10,6 @@
 <html>
 <head>
     <title>Add Credit</title>
-
-
 </head>
 <body>
     <jsp:include page="nav.jsp" />

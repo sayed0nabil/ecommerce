@@ -4,21 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit-Product</title>
-    <link rel="stylesheet" href="./views/css/libs/bootstrap.min.css"/>
-    <script src="./views/js/libs/jquery-3.4.1.min.js"></script>
-    <script src="./views/js/libs/bootstrap.min.js"></script>
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="views/css/libs/all.min.css"/>
-    <script src="./views/js/libs/custom/all.min.js"></script>
-
-    <link rel="stylesheet" href="./views/css/main.css"/>
     <link rel="stylesheet" href="./views/css/products.css"/>
 
     <!-- Custom styles for this template-->
-    <link href="./views/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/views/css/sb-admin-2.min.css" rel="stylesheet">
     <%-- Custom script for editProduct  --%>
-    <script src="views/js/editProduct.js"></script>
+    <script src="${pageContext.request.contextPath}/views/js/editProduct.js"></script>
 
 </head>
 <body>

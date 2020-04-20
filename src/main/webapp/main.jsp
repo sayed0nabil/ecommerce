@@ -5,22 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <title>E-Commerce</title>
-    <link rel="stylesheet" href="./views/css/libs/bootstrap.min.css" />
-    <script src="./views/js/libs/jquery-3.4.1.min.js"></script>
-    <script src="./views/js/libs/bootstrap.min.js"></script>
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="views/css/libs/all.min.css" />
-    <script src="./views/js/libs/all.min.js"></script>
-
     <%-- My Custmo Css File--%>
-    <link rel="stylesheet" href="./views/css/main.css" />
-
-    <%-- Google Fonts --%>
-    <link href="https://fonts.googleapis.com/css2?family=Gotu&display=swap" rel="stylesheet">
-
-    <%-- Icon In Tab--%>
-    <link rel="icon" href="./views/images/cart.png" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/css/main.css" />
 </head>
 <body>
 <header>

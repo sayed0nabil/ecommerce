@@ -1,6 +1,7 @@
 package com.arams.db.dao.classes;
 
 import com.arams.beans.Category;
+import com.arams.beans.Product;
 import com.arams.db.connection.HibernateConnector;
 import com.arams.db.dao.interfaces.ICategoryDao;
 import org.hibernate.Criteria;
@@ -55,6 +56,17 @@ public class CategoryDao {
             return null;
         else
             return category;
+    }
+
+
+    public static Category removeCategory(int categoryId){
+        Session session = HibernateConnector.getInstance().getSession();
+        Category category = session.get(Category.class, categoryId);
+        if(category == null) return null;
+        session.beginTransaction();
+        session.delete(category);
+        session.getTransaction().commit();
+        return category;
     }
 
 

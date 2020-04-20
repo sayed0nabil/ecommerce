@@ -9,12 +9,27 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <%--    <link rel="stylesheet" href="./views/css/libs/bootstrap.min.css"/>--%>
-    <%--    <script src="./views/js/libs/jquery-3.4.1.min.js"></script>--%>
-    <%--    <script src="./views/js/libs/bootstrap.min.js"></script>--%>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/css/libs/bootstrap.min.css" />
+    <script src="${pageContext.request.contextPath}/views/js/libs/jquery-3.4.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/views/js/libs/bootstrap.min.js"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/css/libs/all.min.css" />
+    <script src="${pageContext.request.contextPath}/views/js/libs/all.min.js"></script>
+
+
+
+    <%-- Google Fonts --%>
+    <link href="https://fonts.googleapis.com/css2?family=Gotu&display=swap" rel="stylesheet">
+
+    <%-- Icon In Tab--%>
+    <link rel="icon" href="${pageContext.request.contextPath}/views/images/cart.png" />
+
 
     <%--    <!-- Font Awesome -->--%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/css/libs/all.min.css"/>
+
+
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/css/libs/custom/sb-admin-2.css"/>
     <script src="${pageContext.request.contextPath}/views/js/libs/all.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/views/css/nav.css"/>
@@ -51,18 +66,22 @@
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="mr-2 d-none d-lg-inline text-gray-600 small">${sessionScope.mine.firstName}</span>
                             <img style="width:2.5rem;height:2.5rem" class="img-profile rounded-circle"
-                                 src="images/users">
+                                 src="${pageContext.request.contextPath}/images/users">
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/admin/addcategory">
+                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Add Category
+                            </a>
                             <a class="dropdown-item" href="${pageContext.request.contextPath}/admin/newproduct">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Add Product
                             </a>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/admin/addcredit">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Add a credit limit
+                                Add Credit limit
                             </a>
                             <a class="dropdown-item" href="#">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -162,7 +181,7 @@
         </div>
     </nav>
 </div>
-<script src="./views/js/search.js"></script>
+<script src="${pageContext.request.contextPath}/views/js/search.js"></script>
 <%--=======--%>
 <%--    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/css/libs/bootstrap.min.css" />--%>
 <%--    <script src="${pageContext.request.contextPath}/views/js/libs/jquery-3.4.1.min.js"></script>--%>

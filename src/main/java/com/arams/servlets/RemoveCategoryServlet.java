@@ -1,7 +1,9 @@
 package com.arams.servlets;
 
+import com.arams.beans.Category;
 import com.arams.beans.Product;
 import com.arams.beans.UserProductCart;
+import com.arams.db.dao.classes.CategoryDao;
 import com.arams.db.dao.classes.ProductDao;
 import com.arams.db.dao.classes.UserProductCartDao;
 
@@ -19,22 +21,20 @@ public class RemoveCategoryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String stringCategoryId = req.getParameter("categoryid");
-        int status = 500;
         if(stringCategoryId != null){
 
             try{
                 int categoryId = Integer.parseInt(stringCategoryId);
-//                UserProductCart deletedCategory = CateogyrDao.deleteCategory(categoryId);
-                if("deletedCategory" == null){
-                    status = 404;
+                Category deletedCategory = CategoryDao.removeCategory(categoryId);
+                if(deletedCategory == null){
+                    res.sendRedirect("../main");
                 }
                 else {
-                    status = 200;
+                    res.sendRedirect("addcategory");
                 }
             }catch(NumberFormatException ex){
-                status = 500;
+                res.sendRedirect("../main");
             }
         }
-        res.getWriter().println(status == 200 ? "success": "fail");
     }
 }
