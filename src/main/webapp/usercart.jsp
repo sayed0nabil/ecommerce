@@ -54,7 +54,7 @@
             </div>
             <div class="product-price">${userCart.product.price}</div>
             <div class="product-quantity">
-                <input type="number" value="${userCart.quantity}" min="1">
+                <p>${userCart.quantity}</p>
             </div>
             <div class="product-removal">
                 <a class="remove-product" href="${pageContext.request.contextPath}/user/removecart?productid=${userCart.product.id}&userid=${userCart.user.id}">
