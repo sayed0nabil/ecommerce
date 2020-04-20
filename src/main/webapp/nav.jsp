@@ -14,17 +14,17 @@
     <%--    <script src="./views/js/libs/bootstrap.min.js"></script>--%>
 
     <%--    <!-- Font Awesome -->--%>
-    <link rel="stylesheet" href="views/css/libs/all.min.css"/>
-    <link rel="stylesheet" href="views/css/libs/custom/sb-admin-2.css"/>
-    <script src="./views/js/libs/all.min.js"></script>
-    <link rel="stylesheet" href="./views/css/nav.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/css/libs/all.min.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/css/libs/custom/sb-admin-2.css"/>
+    <script src="${pageContext.request.contextPath}/views/js/libs/all.min.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/css/nav.css"/>
 
 </head>
 <body>
 <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container col-lg-10">
-            <a class="main-link navbar-brand mr-5 text-warning" href="main">
+            <a class="main-link navbar-brand mr-5 text-warning" href="${pageContext.request.contextPath}/main">
                 Shopping
             </a>
             <form class="form-inline w-75" style="position: relative;" action="searchproducts">
@@ -39,9 +39,9 @@
             </form>
             <c:choose>
                 <c:when test="${ empty sessionScope.mine}">
-                    <a class="btn btn-primary mr-2" href="loginPage.html">Login</a>
+                    <a class="btn btn-primary mr-2" href="${pageContext.request.contextPath}/loginPage.html">Login</a>
                     Or
-                    <a href="register.html" class="mx-2">Register</a>
+                    <a href="${pageContext.request.contextPath}/register.html" class="mx-2">Register</a>
                 </c:when>
                 <c:when test="${sessionScope.mine.admin == 1}">
 
@@ -56,7 +56,7 @@
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="admin/newproduct">
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/admin/newproduct">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Add Product
                             </a>
@@ -95,7 +95,7 @@
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="customerProfile.html">
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/customerProfile.html">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Profile
                             </a>
@@ -150,7 +150,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="products">All Categories <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/products">All Categories <span class="sr-only">(current)</span></a>
                 </li>
                 <c:forEach items="${requestScope.categories}" var="category">
                     <li class="nav-item active">
@@ -163,6 +163,84 @@
     </nav>
 </div>
 <script src="./views/js/search.js"></script>
+<%--=======--%>
+<%--    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/css/libs/bootstrap.min.css" />--%>
+<%--    <script src="${pageContext.request.contextPath}/views/js/libs/jquery-3.4.1.min.js"></script>--%>
+<%--    <script src="${pageContext.request.contextPath}/views/js/libs/bootstrap.min.js"></script>--%>
+
+<%--    <!-- Font Awesome -->--%>
+<%--    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/css/libs/all.min.css" />--%>
+<%--    <script src="${pageContext.request.contextPath}/views/js/libs/all.min.js"></script>--%>
+
+<%--    &lt;%&ndash; Google Fonts &ndash;%&gt;--%>
+<%--    <link href="https://fonts.googleapis.com/css2?family=Gotu&display=swap" rel="stylesheet">--%>
+
+<%--    &lt;%&ndash; Icon In Tab&ndash;%&gt;--%>
+<%--    <link rel="icon" href="${pageContext.request.contextPath}/views/images/cart.png" />--%>
+
+<%--    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/css/nav.css"/>--%>
+
+<%--</head>--%>
+<%--<body>--%>
+<%--    <div>--%>
+<%--        <nav class="navbar navbar-expand-lg navbar-light bg-light">--%>
+<%--            <div class="container col-lg-10">--%>
+<%--                <a class="main-link navbar-brand mr-5 text-warning" href="http://localhost:9090/ecommerce_war/main">--%>
+<%--                    Shopping--%>
+<%--                </a>--%>
+<%--                <form class="form-inline w-75" style="position: relative;"action="searchproducts">--%>
+<%--                    <input type="text" class="form-control mb-2 w-75" id="searchInput" placeholder="What You Looking For ?" name="keyword">--%>
+<%--                    <button type="submit" class="btn btn-info mb-2" style="width: 60px; border-radius: 0">--%>
+<%--                        <i class="fas fa-search"></i>--%>
+<%--                    </button>--%>
+<%--                    <ul class="search-result list-group" id="myList" style="position: absolute; top: 37px; z-index: 999; width: 100%;">--%>
+<%--                    </ul>--%>
+<%--                </form>--%>
+<%--                <c:choose>--%>
+<%--                    <c:when test="${ empty sessionScope.mine}">--%>
+<%--                        <a class="btn btn-primary mr-2" href="loginPage.html">Login</a>--%>
+<%--                        Or--%>
+<%--                        <a href="#" class="mx-2">Register</a>--%>
+<%--                    </c:when>--%>
+<%--                    <c:otherwise>--%>
+<%--                        <div class="dropdown">--%>
+<%--                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
+<%--                                Myprofile--%>
+<%--                            </button>--%>
+<%--                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">--%>
+<%--                                <a class="dropdown-item" href="logout">Logout</a>--%>
+<%--                                <a class="dropdown-item" href="#">Another action</a>--%>
+<%--                                <a class="dropdown-item" href="#">Something else here</a>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                        <span class="cart ml-3">--%>
+<%--                            <img width="40" height="40" src="${pageContext.request.contextPath}/views/images/cart.png" alt="Cart" />--%>
+<%--                        </span>--%>
+<%--                    </c:otherwise>--%>
+<%--                </c:choose>--%>
+
+<%--            </div>--%>
+<%--        </nav>--%>
+<%--        <nav class="categories navbar navbar-expand-lg navbar-dark bg-secondary p-0 text-center">--%>
+<%--            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">--%>
+<%--                <span class="navbar-toggler-icon"></span>--%>
+<%--            </button>--%>
+<%--            <div class="collapse navbar-collapse" id="navbarSupportedContent">--%>
+<%--                <ul class="navbar-nav mx-auto">--%>
+<%--                    <li class="nav-item active">--%>
+<%--                        <a class="nav-link" href="${pageContext.request.contextPath}/products">All Categories <span class="sr-only">(current)</span></a>--%>
+<%--                    </li>--%>
+<%--                    <c:forEach items="${requestScope.categories}" var="category">--%>
+<%--                        <li class="nav-item active">--%>
+<%--                            <a class="nav-link" href="${pageContext.request.contextPath}<c:out value="/category?categoryname=${category.getName()}" />"><c:out value = "${category.getName()}"/> <span class="sr-only">(current)</span></a>--%>
+<%--                        </li>--%>
+<%--                    </c:forEach>--%>
+<%--                </ul>--%>
+<%--            </div>--%>
+<%--        </nav>--%>
+<%--    </div>--%>
+<%--    <script src="${pageContext.request.contextPath}/views/js/search.js"></script>--%>
+<%-->>>>>>> 07f1817316dcb96c3c22e9f62e6e1e7db090bb97--%>
 </body>
 </html>
 

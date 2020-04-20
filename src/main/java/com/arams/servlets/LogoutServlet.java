@@ -18,6 +18,5 @@ public class LogoutServlet extends HttpServlet {
             httpSession.removeAttribute("mine");
         }
         req.getRequestDispatcher("main").forward(req,res);
-//        res.sendRedirect("main");
     }
 }
