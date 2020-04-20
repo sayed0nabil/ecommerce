@@ -3,7 +3,7 @@ $(document).ready(function () {
     // let p=$('#param').text();
     let productId = $('#param')[0].innerHTML;
 
-    $.get("admin/editproduct?productId=" + productId, ajaxCallBack);
+    $.get("editproduct2?productId=" + productId, ajaxCallBack);
 
     function ajaxCallBack(responseTxt, statusTxt, xhr) {
         if (statusTxt == "success") {

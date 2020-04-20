@@ -31,7 +31,8 @@ public class CreditLimitServlet extends HttpServlet {
 
         } catch (NumberFormatException e) {
 
-            out.write("1");
+            out.write("0");
+            return;
 
         }
 
@@ -40,10 +41,12 @@ public class CreditLimitServlet extends HttpServlet {
         if (card == null) {
 
             out.write("0");
+            return;
 
         } else if (card.getUsed() == (byte) 1) {
 
             out.write("1");
+            return;
 
         } else {
 
@@ -52,6 +55,7 @@ public class CreditLimitServlet extends HttpServlet {
             CreditCardDao.updateCard(card);
             UserDao.updateUser(currentUser);
             out.write("2" + ":" + card.getLimit());
+            return;
 
         }
     }

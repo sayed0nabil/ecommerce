@@ -88,7 +88,7 @@ public class UserProfileServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        response.sendRedirect("customerProfile.html");
+        response.sendRedirect("user/profile");
     }
 
     private User setUserData(HttpServletRequest request) {

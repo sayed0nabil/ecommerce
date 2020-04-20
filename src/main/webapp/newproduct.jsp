@@ -132,6 +132,7 @@
                                                   name="description"></textarea>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-block btn-user">Submit</button>
+                                        <a href="../main" class="btn btn-primary btn-block btn-user">Back</a>
                                     </form>
 
                                 </div>

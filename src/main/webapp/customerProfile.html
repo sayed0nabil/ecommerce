@@ -8,14 +8,13 @@
     <meta content="alaa" name="author">
     <title>Create an account</title>
     <!-- Custom fonts-->
-    <link href="views/css/libs/custom/all.css" rel="stylesheet" type="text/css">
+    <link href="../views/css/libs/custom/all.css" rel="stylesheet" type="text/css">
     <!-- Custom styles for this template-->
-    <link href="views/css/libs/custom/sb-admin-2.css" rel="stylesheet" type="text/css">
+    <link href="../views/css/libs/custom/sb-admin-2.css" rel="stylesheet" type="text/css">
 
 </head>
 <body class="bg-gradient-primary">
-<form action="userProfile" class="user-profile" enctype="multipart/form-data" method="post">
-
+<form action="../userProfile" class="user-profile" enctype="multipart/form-data" method="post">
 
     <div class="modal" id="modal" role="dialog" tabindex="-1">
         <div class="modal-dialog" role="document">
@@ -69,7 +68,7 @@
                             <!--style="border-radius: 100px;width:11rem;height:12rem;object-fit: fill;"-->
                             <img class="rounded-circle" id="UserImage"
                                  onerror="imageLoadingErrorMessage(event)"
-                                 src="images/users"
+                                 src="../images/users"
                                  style="width:11rem;height:12rem;"/>
                             <a class="text-light mt-3 btn btn-primary "
                                onclick="$('#HTMLFileChooser').trigger('click')">
@@ -121,6 +120,7 @@
                             </div>
                             <input class="btn btn-primary btn-user btn-block" type="submit"
                                    value="Save Changes"/>
+                            <a class="btn btn-primary btn-user btn-block" href="../main">Back</a>
                             <hr>
                         </div>
                     </div>
@@ -158,11 +158,11 @@
         </div>
     </div>
 </form>
-<script src="views/js/libs/jquery-3.4.1.min.js"></script>
-<script src="views/js/libs/bootstrap.min.js"></script>
-<script src="views/js/libs/custom/jquery.easing.js"></script>
+<script src="../views/js/libs/jquery-3.4.1.min.js"></script>
+<script src="../views/js/libs/bootstrap.min.js"></script>
+<script src="../views/js/libs/custom/jquery.easing.js"></script>
 <!-- Custom scripts for all pages-->
-<script src="views/js/libs/custom/sb-admin-2.js"></script>
-<script src="views/js/update.js"></script>
+<script src="../views/js/libs/custom/sb-admin-2.js"></script>
+<script src="../views/js/update.js"></script>
 </body>
 </html>

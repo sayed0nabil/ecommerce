@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $.get("userProfile", ajaxCallBack);
+    $.get("../userProfile", ajaxCallBack);
 
     function ajaxCallBack(responseTxt, statusTxt, xhr) {
         if (statusTxt == "success") {
@@ -25,7 +25,7 @@ $(document).ready(function () {
 
     $("#ceditBtn").click(function () {
         let creditlimit = $("#creditlimit").val();
-        $.post("CreditLimitServlet", {"creditlimit": creditlimit}, criditLimitStatus);
+        $.post("../CreditLimitServlet", {"creditlimit": creditlimit}, criditLimitStatus);
     });
 
 });

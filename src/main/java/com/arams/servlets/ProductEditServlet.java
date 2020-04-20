@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.util.List;
 
 
-@WebServlet(name = "ProductEdit", urlPatterns = {"/admin/editproduct"})
+@WebServlet(name = "ProductEdit", urlPatterns = {"/admin/editproduct2"})
 public class ProductEditServlet extends HttpServlet {
 
     @Override

@@ -4,21 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit-Product</title>
-    <link rel="stylesheet" href="./views/css/products.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/css/products.css"/>
 
     <%-- Custom script for editProduct  --%>
+    <script src="${pageContext.request.contextPath}/views/js/libs/jquery-3.4.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/views/js/editProduct.js"></script>
+
 
 </head>
 <body>
 <header>
     <jsp:include page="nav.jsp"/>
 </header>
-<div id="param" class="d-none" value="${param.productId}">${param.productId}</div>
+<div id="param" class="d-none" value="${param.productid}">${param.productid}</div>
 <div class="card o-hidden border-0 shadow-lg my-5">
-    <form class="user" method="post" action="admin/editproduct" onsubmit="" enctype="multipart/form-data">
+    <form class="user" method="post" action="${pageContext.request.contextPath}/admin/editproduct2" onsubmit="" enctype="multipart/form-data">
 
-        <input name="productId" class="d-none" type="text" value="${param.productId}"/>
+        <input name="productId" class="d-none" type="text" value="${param.productid}"/>
         <div class="modal" id="modal" role="dialog" tabindex="-1">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -44,7 +46,7 @@
                     <div class="card-body">
                         <div class="product-image">
                             <img class="img-fluid px-3 px-sm-4 mt-3 mb-2" style="width: 25rem;height:16rem;"
-                                 src="${pageContext.request.contextPath}/productImages?productID=${param.productId}&imageNumber=1"
+                                 src="${pageContext.request.contextPath}/productImages?productID=${param.productid}&imageNumber=1"
                                  id="image1"
                                  onerror="imageLoadingErrorMessage('image1')"
                                  alt="Card image cap">
@@ -64,7 +66,7 @@
                     <div class="card-body">
                         <div class="product-image">
                             <img class="img-fluid px-3 px-sm-4 mt-3 mb-2" style="width: 25rem;height:16rem;"
-                                 src="${pageContext.request.contextPath}/productImages?productID=${param.productId}&imageNumber=2"
+                                 src="${pageContext.request.contextPath}/productImages?productID=${param.productid}&imageNumber=2"
                                  id="image2"
                                  onerror="imageLoadingErrorMessage('image2')"
                                  alt="Card image cap">
@@ -85,7 +87,7 @@
                     <div class="card-body">
                         <div class="product-image">
                             <img class="img-fluid px-3 px-sm-4 mt-3 mb-2" style="width: 25rem;height:16rem;"
-                                 src="${pageContext.request.contextPath}/productImages?productID=${param.productId}&imageNumber=3"
+                                 src="${pageContext.request.contextPath}/productImages?productID=${param.productid}&imageNumber=3"
                                  id="image3"
                                  onerror="imageLoadingErrorMessage('image3')"
                                  alt="Card image cap">
@@ -115,12 +117,12 @@
                     </div>
                     <div class="form-group">
                         <input class="form-control "
-                               id="price" name="price" placeholder="price" type="text" required
+                               id="price" name="price" placeholder="price" type="number" required
                                onchange="validatePrice()">
                     </div>
                     <div class="form-group">
                         <input class="form-control "
-                               id="quantity" name="quantity" placeholder="quantity" type="text"
+                               id="quantity" name="quantity" placeholder="quantity" type="number"
                                required onchange="validateQuantity()">
                     </div>
 
@@ -164,14 +166,14 @@
 </body>
 </html>
 <!-- Bootstrap core JavaScript-->
-<script src="./views/js/libs/jquery.min.js"></script>
-<script src="./views/js/libs/bootstrap.bundle.min.js"></script>
+<script src="${pageContext.request.contextPath}/views/js/libs/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/views/js/libs/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="./views/js/libs/jquery.easing.min.js"></script>
+<script src="${pageContext.request.contextPath}/views/js/libs/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="./views/js/libs/sb-admin-2.min.js"></script>
+<script src="${pageContext.request.contextPath}/views/js/libs/sb-admin-2.min.js"></script>
 
 <%--<!-- Page level plugins -->--%>
 <%--<script src="vendor/chart.js/Chart.min.js"></script>--%>
