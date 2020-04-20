@@ -19,21 +19,20 @@ import javax.persistence.Table;
 public class CreditCard  implements java.io.Serializable {
 
 
-     private Integer code;
+     private int code;
      private int limit;
-     private byte used;
+     private int used;
 
     public CreditCard() {
     }
 
-    public CreditCard(int limit, byte used) {
+    public CreditCard(int code, int limit, int used) {
+       this.code = code;
        this.limit = limit;
        this.used = used;
     }
-   
-     @Id @GeneratedValue(strategy=IDENTITY)
 
-    
+    @Id
     @Column(name="`code`", unique=true, nullable=false)
     public Integer getCode() {
         return this.code;
@@ -55,11 +54,11 @@ public class CreditCard  implements java.io.Serializable {
 
     
     @Column(name="`used`", nullable=false)
-    public byte getUsed() {
+    public int getUsed() {
         return this.used;
     }
     
-    public void setUsed(byte used) {
+    public void setUsed(int used) {
         this.used = used;
     }
 
