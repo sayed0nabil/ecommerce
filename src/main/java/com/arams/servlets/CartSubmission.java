@@ -13,25 +13,24 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Set;
 
 public class CartSubmission extends HttpServlet {
-    static public String submitCart(HttpServletRequest request) {
+    static public String submitCart(HttpServletRequest request, double totalPrice) {
         User currentUser = (User) request.getSession().getAttribute("mine");
-        int userLimit = currentUser.getCreditLimit();
+        double userLimit = currentUser.getCreditLimit();
         Set<UserProductCart> userProductCarts = currentUser.getUserProductCarts();
-        if(userProductCarts.size()==0){
+        if (userProductCarts.size() == 0) {
             return "your cart is empty";
         }
-        int cartPrice = 0;
+        double cartPrice = totalPrice;
         String result = "";
         for (UserProductCart cartProduct : userProductCarts) {
-            if (cartProduct.getQuantity() <= cartProduct.getProduct().getQuantity()) {
-                cartPrice += cartProduct.getQuantity() * cartProduct.getProduct().getPrice();
-            } else {
+            if (cartProduct.getQuantity() > cartProduct.getProduct().getQuantity()) {
+                //cartPrice += cartProduct.getQuantity() * cartProduct.getProduct().getPrice();
                 result = "there is no available quantity of " + cartProduct.getProduct().getName();
                 return result;
             }
         }
         if (cartPrice > userLimit) {
-            result = "you don't have money ";
+            result = "you don't enough have money ";
         } else {
             for (UserProductCart cartProduct : userProductCarts) {
                 Product product = cartProduct.getProduct();
@@ -40,7 +39,7 @@ public class CartSubmission extends HttpServlet {
                 ProductDao.updateProduct(product);
             }
             userLimit = userLimit - cartPrice;
-            currentUser.setCreditLimit(userLimit);
+            currentUser.setCreditLimit((int)userLimit);
             UserProductCartDao.clearUserCart(currentUser);
             currentUser.getUserProductCarts().clear();
             UserDao.updateUser(currentUser);

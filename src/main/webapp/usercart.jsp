@@ -24,38 +24,6 @@
     <link href="../views/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="../views/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="../views/css/usercart.css" rel="stylesheet" type="text/css">
-    <script>
-        var req = null;
-
-        function submitForm() {
-            if (window.XMLHttpRequest)
-                req = new XMLHttpRequest();
-            else if (window.ActiveXObject)
-                req = new ActiveXObject(Microsoft.XMLHTTP);
-            req.onreadystatechange = handleReq;
-            req.open("POST", "?t = " + new Date().getTime(), true);
-            req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-            req.send("total=" + $("#cart-total").value);
-        }
-
-        function handleReq() {
-            if (req.readyState == 4 && req.status == 200) {
-                xmlvalue = req.responseText;
-                if (xmlvalue == "successfully submitted") {
-                    $("#status").addClass("alert alert-success");
-                    setTimeout(function () {
-                        location.reload();
-                    }, 3000);
-                } else {
-                    $("#status").addClass("alert alert-danger");
-                }
-                document.getElementById("status").innerHTML = xmlvalue;
-
-            } else {
-                //document.getElementById("status").innerHTML = "no response";
-            }
-        }
-    </script>
 
     <link rel="icon" href="./views/images/cart.png"/>
 </head>
@@ -109,15 +77,15 @@
     <div class="totals">
         <div class="totals-item">
             <label>Subtotal</label>
-            <div class="totals-value" id="cart-subtotal">71.97</div>
+            <div class="totals-value" id="cart-subtotal">0</div>
         </div>
         <div class="totals-item">
             <label>Tax (5%)</label>
-            <div class="totals-value" id="cart-tax">3.60</div>
+            <div class="totals-value" id="cart-tax">0</div>
         </div>
         <div class="totals-item">
             <label>Shipping</label>
-            <div class="totals-value" id="cart-shipping">15.00</div>
+            <div class="totals-value" id="cart-shipping">0</div>
         </div>
         <div class="totals-item totals-item-total">
             <label>Grand Total</label>
@@ -126,7 +94,7 @@
     </div>
 
 
-        <form method="post">
+    <form method="post">
         <button class="checkout" type="button" onclick="submitForm()">Checkout</button>
     </form>
 
@@ -144,6 +112,44 @@
 <script src="../views/js/libs/sb-admin-2.min.js"></script>
 
 <script src="../views/js/usercart.js"></script>
+
+<script>
+    var req = null;
+
+    function submitForm() {
+        if (window.XMLHttpRequest)
+            req = new XMLHttpRequest();
+        else if (window.ActiveXObject)
+            req = new ActiveXObject(Microsoft.XMLHTTP);
+        req.onreadystatechange = handleReq;
+        req.open("POST", "?t = " + new Date().getTime(), true);
+        req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+        req.send("total=" + $("#cart-total").text());
+        console.log("submit done");
+    }
+
+    function handleReq() {
+        console.log("start handling");
+        if (req.readyState == 4 && req.status == 200) {
+            console.log("success request");
+            xmlvalue = req.responseText;
+            if (xmlvalue === "successfully submitted") {
+                console.log(xmlvalue);
+                $("#status").addClass("alert alert-success");
+                setTimeout(function () {
+                    location.reload();
+                }, 3000);
+            } else {
+                console.log("danger");
+                $("#status").addClass("alert alert-danger");
+            }
+            document.getElementById("status").innerHTML = xmlvalue;
+
+        } else {
+            //document.getElementById("status").innerHTML = "no response";
+        }
+    }
+</script>
 
 </body>
 </html>
