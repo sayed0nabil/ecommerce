@@ -83,7 +83,7 @@
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Add Credit limit
                             </a>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/admin/usersprofile">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Users' profiles
                             </a>
