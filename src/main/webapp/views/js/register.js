@@ -68,5 +68,6 @@ function imageLoadingErrorMessage(event) {
     $("#modal-title").innerHTML = "Image upload error";
     $("#modal-message").innerHTML = "Please choose an image with a valid format.";
     $('#modal').modal('show');
+    $("#HTMLFileChooser").replaceWith($("#HTMLFileChooser").val('').clone(true));
 
 }
