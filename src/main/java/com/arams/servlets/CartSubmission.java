@@ -18,7 +18,7 @@ public class CartSubmission extends HttpServlet {
         double userLimit = currentUser.getCreditLimit();
         Set<UserProductCart> userProductCarts = currentUser.getUserProductCarts();
         if (userProductCarts.size() == 0) {
-            return "your cart is empty";
+            return "Your cart is empty";
         }
         double cartPrice = totalPrice;
         String result = "";
@@ -30,7 +30,7 @@ public class CartSubmission extends HttpServlet {
             }
         }
         if (cartPrice > userLimit) {
-            result = "you don't enough have money ";
+            result = "You don't enough have money ";
         } else {
             for (UserProductCart cartProduct : userProductCarts) {
                 Product product = cartProduct.getProduct();

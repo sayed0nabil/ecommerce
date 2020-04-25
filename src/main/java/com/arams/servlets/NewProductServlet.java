@@ -74,7 +74,9 @@ public class NewProductServlet extends HttpServlet {
         int productQuantity = Integer.parseInt(request.getParameter("quantity"));
         String description = request.getParameter("description");
 //        int category = Integer.parseInt(request.getParameter("category"));
-        Category productCategory = new Category(1, "Electronics");
+
+        Category productCategory = CategoryDao.getCategoryByName(request.getParameter("category"));
+
         Product product = new Product(productCategory, productName, productPrice, productQuantity);
         product.setDescription(description);
         // get uploaded images

@@ -11,12 +11,6 @@
 <head>
     <title>product profile </title>
     <meta charset="utf-8">
-    <script src="views/js/libs/jquery-3.4.1.min.js"></script>
-
-    <link href="views/css/all.min.css" rel="stylesheet" type="text/css">
-
-    <link href="views/css/sb-admin-2.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         .productProfile {
             padding: 20px;
@@ -110,6 +104,8 @@
                             </c:when>
                             <c:otherwise>
                                 <p>${requestScope.product.quantity}</p>
+                                <a href="admin/editproduct?productid=${product.getId()}"
+                                   class="btn btn-outline-info btn-lg btn-block">Edit</a>
                             </c:otherwise>
                         </c:choose>
                     </form>
@@ -119,6 +115,8 @@
         </div>
 
     </section>
+
 </div>
+<jsp:include page="footer.html"/>
 </body>
 </html>

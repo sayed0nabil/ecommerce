@@ -16,17 +16,19 @@
             <section class="text-white header-text-content">
                 <div class="container col-lg-10">
                     <h2>Find Your Product Here</h2>
-                    <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                        when an unknown printer took a galley of type and scrambled it to make
-                        a type specimen book.
-                    </p>
+                    <ul>
+                        <li>You Can Browse For Products</li>
+                        <li>You Can Put Your Products In Cart</li>
+                        <li>You Can Increase Your Limit By Using Generation Code</li>
+                        <li>You Can Buy What You Want Using Your Limit</li>
+                        <li>You Can Search about Products</li>
+                    </ul>
                     <button class="btn btn-outline-warning">Shope Now</button>
                 </div>
             </section>
         </div>
     </div>
+    <jsp:include page="footer.html"/>
 </header>
 </body>
 </html>

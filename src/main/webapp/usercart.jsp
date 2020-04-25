@@ -29,7 +29,7 @@
 
 </div>
 <%--shopping cart--%>
-<div class="shopping-cart">
+<div class="shopping-cart" style="min-height: 70vh">
 
     <%--    column lables for the items --%>
     <div class="column-labels">
@@ -57,7 +57,9 @@
                 <p>${userCart.quantity}</p>
             </div>
             <div class="product-removal">
-                <a class="remove-product" href="${pageContext.request.contextPath}/user/removecart?productid=${userCart.product.id}&userid=${userCart.user.id}">
+                <a class="remove-product" href="${pageContext.request.contextPath}/user/removecart?productid=${userCart.product.id}&userid=${userCart.user.id}"
+                   onclick="return confirm('\nAre You Sure To Remove From Cart  ?') ? true : false ;"
+                >
                     Remove
                 </a>
             </div>
@@ -92,6 +94,7 @@
     </form>
 
 </div>
+<jsp:include page="footer.html"/>
 
 <script src="${pageContext.request.contextPath}/views/js/usercart.js"></script>
 
@@ -117,13 +120,13 @@
             xmlvalue = req.responseText;
             if (xmlvalue === "successfully submitted") {
                 console.log(xmlvalue);
-                $("#status").addClass("alert alert-success");
+                $("#status").addClass("alert alert-success text-center");
                 setTimeout(function () {
                     location.reload();
                 }, 3000);
             } else {
                 console.log("danger");
-                $("#status").addClass("alert alert-danger");
+                $("#status").addClass("alert alert-danger text-center");
             }
             document.getElementById("status").innerHTML = xmlvalue;
 

@@ -52,10 +52,15 @@ public class CategoryDao {
         Session session = HibernateConnector.getInstance().getSession();
         Criteria criteria = session.createCriteria(Category.class).add(Restrictions.eq("name", categoryName).ignoreCase());
         Category category = (Category) criteria.uniqueResult();
-        if (category == null)
+        if (category == null){
+            System.out.println("Cateogy is Null");
             return null;
-        else
+        }
+        else{
+            System.out.println("Category is not null");
             return category;
+        }
+
     }
 
 

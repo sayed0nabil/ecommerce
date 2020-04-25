@@ -20,7 +20,6 @@ public class AddingCategoryServlet extends HttpServlet {
         CategoryDao categoryDao = new CategoryDao();
         List<Category> categoryList = categoryDao.getAllCategories();
         req.setAttribute("categories", categoryList);
-        System.out.println(categoryList);
         RequestDispatcher rd = req.getRequestDispatcher("../newcategory.jsp");
         rd.forward(req, resp);
     }
@@ -29,15 +28,14 @@ public class AddingCategoryServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String result = "";
         String categoryname = req.getParameter("category_name");
-        System.out.println("categoryname************" + categoryname);
         if (categoryname != null && isPersist(categoryname)) {
-            result = "this category exsist";
+            result = "This Category Already Exists";
             resp.getOutputStream().print(result);
         } else {
             Category category = new Category();
             category.setName(categoryname);
             CategoryDao.addCategory(category);
-            result = "category created successfully";
+            result = "Category has been created successfully";
             resp.getOutputStream().print(result);
         }
     }

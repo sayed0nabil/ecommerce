@@ -14,43 +14,45 @@
 </header>
 <h1 class="text-center my-2">Users' profiles</h1>
 
-<table>
-    <tr>
-        <th>Image</th>
-        <th>Name</th>
-        <th>email</th>
-        <th>BirthDate</th>
-        <th>Admin</th>
-    </tr>
-    <c:forEach items="${requestScope.users}" var="iterator">
-        <tr>
-            <td><img class="img-profile rounded-circle" style="width:2rem;height:2rem"
-                     src="usersimages?userid=${iterator.id}"/></td>
-            <td>${iterator.firstName} ${iterator.lastName}</td>
-            <td>${iterator.email}</td>
-            <td>${iterator.birthDate}</td>
-            <td>
-                <c:choose>
-                    <c:when test="${iterator.admin == 0}">
-
-                        No
-
-                    </c:when>
-                    <c:otherwise>
-
-                        Yes
-
-                    </c:otherwise>
-
-                </c:choose>
-
-            </td>
-
+<div class="row justify-content-center" style="min-height: 72vh">
+    <table class="table table-striped col-md-8">
+        <tr class="bg-primary text-white">
+            <th>Image</th>
+            <th>Name</th>
+            <th>email</th>
+            <th>BirthDate</th>
+            <th>Admin</th>
         </tr>
+        <c:forEach items="${requestScope.users}" var="iterator">
+            <tr>
+                <td><img class="img-profile rounded-circle" style="width:2rem;height:2rem"
+                         src="usersimages?userid=${iterator.id}"/></td>
+                <td>${iterator.firstName} ${iterator.lastName}</td>
+                <td>${iterator.email}</td>
+                <td>${iterator.birthDate}</td>
+                <td>
+                    <c:choose>
+                        <c:when test="${iterator.admin == 0}">
 
-    </c:forEach>
-</table>
+                            No
 
+                        </c:when>
+                        <c:otherwise>
+
+                            Yes
+
+                        </c:otherwise>
+
+                    </c:choose>
+
+                </td>
+
+            </tr>
+
+        </c:forEach>
+    </table>
+</div>
+<jsp:include page="footer.html"/>
 <style>
     table {
         font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;

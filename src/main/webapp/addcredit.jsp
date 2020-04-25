@@ -23,7 +23,7 @@
             </thead>
             <tbody id="credits-body">
             <c:forEach items="${requestScope.credits}" var="credit">
-                <tr class="${credit.used == 1 ? 'table-primary': 'table-danger'}">
+                <tr class="${credit.used == 0 ? 'table-primary': 'table-danger'}">
                     <td><strong>${credit.code}</strong></td>
                     <td colspan="2"><strong>${credit.limit}</strong></td>
                 </tr>

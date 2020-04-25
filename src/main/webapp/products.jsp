@@ -12,14 +12,14 @@
 </head>
 <body>
 <jsp:include page="nav.jsp"/>
-<div class="products">
+<div class="products" style="min-height: 75vh;">
     <div class="container">
         <div class="row">
             <c:set var="current" value="" scope="page"/>
             <c:if test="${empty requestScope.products}">
-                <div class="m-auto w-50 alert alert-danger p-2">
+                <h2 class="m-auto w-50 alert alert-danger p-2 text-center">
                     No Products Found
-                </div>
+                </h2>
             </c:if>
             <c:forEach items="${requestScope.products}" var="product">
             <c:if test="${current != product.getCategory().getName()}">
@@ -30,7 +30,7 @@
             <c:if test="${product.quantity > 0}">
                 <div class="card col-lg-3 col-md-4 my-3">
                     <div class="product-image">
-                        <img class="card-img-top" src="./productImages?productID=${product.id}&imageNumber=1" alt="Card image cap">
+                        <img class="card-img-top" src="./productImages?productID=${product.id}&imageNumber=1" alt="Card image cap" height="200">
                         <div class="product-cover"></div>
                         <a class="btn btn-primary inner-view-details"
                            href="${pageContext.request.contextPath}/productprofile?productId=${product.getId()}">View
@@ -51,11 +51,10 @@
                                     <a href="admin/editproduct?productid=${product.getId()}"
                                        class="btn btn-outline-info btn-lg btn-block">Edit</a>
                                     <a href="admin/removeproduct?productid=${product.getId()}"
-                                       class="btn btn-danger btn-lg btn-block">Remove</a>
+                                       class="btn btn-danger btn-lg btn-block"
+                                       onclick="return confirm('\nAre You Sure To Remove This Product  ?') ? true : false ;"
+                                        >Remove</a>
                                 </c:when>
-                                <c:otherwise>
-                                    <button type="button" class="btn btn-success btn-lg btn-block">Add To Cart</button>
-                                </c:otherwise>
                             </c:choose>
                         </c:if>
                     </div>
@@ -66,6 +65,6 @@
     </div>
     <hr/>
 </div>
-</div>
+<jsp:include page="footer.html"/>
 </body>
 </html>

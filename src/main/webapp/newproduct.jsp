@@ -92,10 +92,8 @@
                                             <select class="custom-select my-1 mr-sm-2 is-valid"
                                                     id="inlineFormCustomSelectPref"
                                                     name="category" required>
-                                                <!--<option value="" disabled selected hidden>others</option>-->
-                                                <option value="others" selected>others</option>
                                                 <c:forEach items="${requestScope.categories}" var="iterator">
-                                                    <option value="${iterator.id}">${iterator.name}</option>
+                                                    <option value="${iterator.name}">${iterator.name}</option>
 
                                                 </c:forEach>
                                             </select>

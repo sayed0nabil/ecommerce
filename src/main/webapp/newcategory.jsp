@@ -66,7 +66,7 @@
 
 
 <section>
-    <table class="table table-hover table-light bg-gradient-light justify-content-center" id="category-table">
+    <table class="table table-hover table-light bg-gradient-light justify-content-center mp-4" id="category-table">
         <thead>
         <tr>
             <th scope="col">Category Name</th>
@@ -78,14 +78,17 @@
             <tr>
                     <%--                    <th scope="row">${category.id}</th>--%>
                 <td>${category.name}</td>
+                <c:if test="${category.name != 'others'}">
                 <td>
                     <a class="btn btn btn-outline-danger" href="${pageContext.request.contextPath}/admin/removecategory?categoryid=${category.id}"
                     onclick="return confirm('Removing this category will remove all products binded to it \nAre You Sure To Delete It ?') ? true : false ;">Remove</a>
                 </td>
+                </c:if>
             </tr>
         </c:forEach>
         </tbody>
     </table>
+    <jsp:include page="footer.html"/>
 </section>
 
 
@@ -113,14 +116,14 @@
     function handleReq() {
         if (req.readyState == 4 && req.status == 200) {
             xmlvalue = req.responseText;
-            if (xmlvalue == "category created successfully") {
-                $("#status").addClass("alert alert-success");
+            if (xmlvalue == "Category has been created successfully") {
+                $("#status").addClass("alert alert-success w-50 mx-auto text-center");
                 document.getElementById('newcategory').innerHTML = "";
 
                 location.reload();
 
             } else {
-                $("#status").addClass("alert alert-danger");
+                $("#status").addClass("alert alert-danger w-50 mx-auto text-center");
             }
             document.getElementById("status").innerHTML = xmlvalue;
         } else {

@@ -5,6 +5,7 @@ import com.arams.beans.User;
 import com.arams.beans.UserProductCart;
 import com.arams.beans.UserProductCartId;
 import com.arams.db.dao.classes.ProductDao;
+import com.arams.db.dao.classes.UserDao;
 import com.arams.db.dao.classes.UserProductCartDao;
 
 import javax.servlet.RequestDispatcher;
@@ -41,9 +42,7 @@ public class ProductProfileServlet extends HttpServlet {
         String Quantity = request.getParameter("quantity");
         if (productId != null) {
             int userId = loggedIn.getId();
-            System.out.println(userId);
             int productID = Integer.parseInt(productId);
-            System.out.println(productID);
             int qty = Integer.parseInt(Quantity);
             Product product = ProductDao.getProductById(productID);
             UserProductCartId userProductCartId = new UserProductCartId(userId, productID);
@@ -51,6 +50,7 @@ public class ProductProfileServlet extends HttpServlet {
             Set<UserProductCart> userProductCartSet = loggedIn.getUserProductCarts();
             userProductCartSet.add(userProductCart);
             UserProductCartDao.updateProductToCart(userProductCart);
+            request.getSession(true).setAttribute("mine", UserDao.getUser(((User) request.getSession(true).getAttribute("mine")).getId()));
             response.sendRedirect("./main");
         }
     }

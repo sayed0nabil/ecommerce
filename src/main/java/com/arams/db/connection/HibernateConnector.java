@@ -33,9 +33,6 @@ public class HibernateConnector {
      */
     public Session getSession() throws HibernateException {
         Session session = sessionFactory.openSession();
-//        if (!session.isConnected()) {
-//            this.reconnect();
-//        }
         return session;
     }
 

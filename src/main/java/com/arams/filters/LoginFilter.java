@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class LoginFilter implements Filter {
 
@@ -27,6 +28,11 @@ public class LoginFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
+
+        String servletPath = req.getServletPath();
+        if(servletPath.matches("(.*).jsp"))
+            res.sendRedirect(req.getContextPath() + "/main");
+        else {
 
             Cookie ck[] = req.getCookies();
             if (ck == null) {
@@ -44,12 +50,13 @@ public class LoginFilter implements Filter {
                 }
 
             } else {
-                if(request.getAttribute("categories") == null){
+                if (request.getAttribute("categories") == null) {
                     List<Category> categories = new CategoryDao().getAllCategories();
                     request.setAttribute("categories", categories);
                 }
                 chain.doFilter(request, response);
             }
+        }
     }
 
     @Override

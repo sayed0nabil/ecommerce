@@ -135,7 +135,7 @@
 
         </div>
     </nav>
-    <nav class="categories navbar navbar-expand-lg navbar-dark bg-secondary p-0 text-center">
+    <nav class="categories navbar navbar-expand-lg navbar-dark p-0 text-center">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -147,7 +147,7 @@
                 </li>
                 <c:forEach items="${requestScope.categories}" var="category">
                     <li class="nav-item active">
-                        <a class="nav-link" href="<c:out value="category?categoryname=${category.getName()}" />"><c:out
+                        <a class="nav-link" href="${pageContext.request.contextPath}<c:out value="/category?categoryname=${category.getName()}" />"><c:out
                                 value="${category.getName()}"/> <span class="sr-only">(current)</span></a>
                     </li>
                 </c:forEach>
