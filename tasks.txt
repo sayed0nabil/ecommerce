@@ -1,0 +1,66 @@
+Front-end
+-------------
+1.Login  1 Alaa --> Done
+2.Register 1 Moamen --> Done
+3.Review and edit Customer Profile  1 Alaa --> Done
+4.Home Page 1 Sayed --> Done
+5.Add New Product  1 Reham --> Done
+5.Edit Product 1 Moamen and Alaa --> Done
+6.View All Products 1 Sayed --> Done
+7.Product Profile 1 Reham --> Done
+8.Shopping Cart --> 1 Elnaggar --> Done
+9.Add Category --> 1 Elnaggar --> Done
+10. Add Code Of Credit Card By Admin 1 Sayed --> Done
+11.Customer --> add product to shopping cart 1 Moamen and Alaa --> Done
+12.Edit Product Button  1 Sayed --> Progress
+"/admin/editproduct?productid=1"
+13. Two Pages Will Update 1 Moamen --> Progress
+
+
+
+Back-end
+----------
+0.Signelton Session 1 Elnagger --> Done
+1.Login 1  Alaa and Sayed--> Done
+2.Register 1 Elnagger and Moamen --> Done
+3. Get All Categories  1 Reham  --> Done
+3.Get Customer Profile 1 Moamen --> Done
+4.Add New Product 1 Reham --> Done
+5.Edit Product 1 Moamen and Alaa --> Done
+6.View All Products 1 Sayed --> Done
+7.Product Profile 1 Reham --> Done
+8.Remove Product 1 Sayed --> Done
+9. Search products 1 Sayed --> Done
+10. Add Code Of Credit Card By Admin 1  Sayed --> Done
+11.Submit Product from customer 1 Reham --> Done
+12.Remove Product From Shopping Cart 1 Sayed --> Done
+"/user/removecart?cartid=2"
+13.Remove Category 1 Sayed --> Done
+
+More Features
+---------------   
+1. Discuss about paths of admin
+operation "/admin/operation" --> Done
+2. Make a color pattern for
+the whole website --> Done
+3. Description in bulllet list
+4. Adding Number Of Products 
+on each category
+5. Handle when server down when 
+front end access it (404 not found)
+
+
+Issues
+--------
+1.Quantity Should Be Avaliable when I didn't logged in yet 1 Moamen --> Solved
+2.Path Of Main Page  1 Sayed --> Solved
+3.Fixed Navbar Solved 
+4. Search About any href and append it with context path 1 Sayed --> Solved
+5.edit product link 1 Moamen --> Solved
+6.add to cart to admin Solved
+7.User Profile, login and register doesn't have nav bar  1 Moamen --> Solved
+8.image user doesn't appear just default image appear --> Solved
+9.Remove Register and remember me   --> Solved
+10.Default Category others in DB --> Solved
+11. Create Many Products and adjust footer html
+
